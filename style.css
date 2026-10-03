@@ -2952,3 +2952,238 @@ nav a:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 22px rgba(57, 79, 240, 0.45);
 }
+
+
+/* ===== هاور هدر: ملایم‌تر (کم‌رنگ‌تر از قبل) ===== */
+nav a:hover {
+    color: #ffffff;
+    background: rgba(88, 104, 255, 0.22);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(57, 79, 240, 0.20);
+}
+.btn-sm:hover {
+    color: #ffffff;
+    background: rgba(88, 104, 255, 0.28);
+    border-color: rgba(158, 158, 255, 0.8);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(57, 79, 240, 0.20);
+}
+.cart-btn:hover {
+    background: rgba(88, 104, 255, 0.28);
+    border-color: rgba(158, 158, 255, 0.7);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(57, 79, 240, 0.20);
+}
+
+
+/* ================================================================
+   ✦ عکس‌های اختصاصی محصولات (SVG) ✦
+   سایه‌ی تیره‌ی کارت‌های قدیمی (عکس پادشاهان) برای عکس‌های جدید لازم نیست؛
+   فقط یه سایه‌ی سبک پایین می‌ذاریم تا نوشته‌ها خوانا بمونن.
+   ================================================================ */
+.card[style*=".svg"] .card-img {
+    background-image:
+        linear-gradient(to top, rgba(4, 5, 12, 0.50), rgba(4, 5, 12, 0) 55%),
+        var(--img),
+        linear-gradient(135deg, #10121f, #1d2450 60%, #394ff0);
+    background-size: cover;
+    background-position: center;
+}
+.cat-card[style*=".svg"] {
+    background-image:
+        linear-gradient(to top, rgba(6, 7, 15, 0.82) 8%, rgba(6, 7, 15, 0) 62%),
+        var(--img);
+}
+.deal[style*=".svg"] {
+    background-image:
+        linear-gradient(to left, rgba(6, 7, 15, 0.92) 40%, rgba(6, 7, 15, 0) 85%),
+        var(--img);
+}
+.pd-media.has-img {
+    background-image:
+        linear-gradient(to top, rgba(6, 7, 15, 0.55), rgba(6, 7, 15, 0) 55%),
+        var(--img);
+}
+
+/* برچسب «خرید سی پی» روی عکس‌های جدید لازم نیست؛ خودِ عکس گویاست */
+.card[style*=".svg"] .img-label { display: none; }
+
+
+/* ================================================================
+   ✦ روون‌سازی سایت (سرعت) ✦
+   لپ‌تاپ ضعیف با شیشه‌ی تار روی سطح‌های بزرگ و سایه‌های سنگین کند می‌شد.
+   این بخش همون ظاهر شیشه‌ای رو نگه می‌داره ولی کارهای سنگین رو برمی‌داره:
+   ۱) شیشه‌ی تارِ هدر و قاب بزرگ حذف شد (با رنگ نیمه‌شفاف جایگزین شد)
+   ۲) will-change از ۹۶ کارت برداشته شد (۹۶ لایه‌ی گرافیکی رم زیادی می‌خورد)
+   ۳) سایه‌ها سبک‌تر شدن
+   ۴) کارت‌های پایین صفحه تا وقتی دیده نشن اصلاً کشیده نمی‌شن (content-visibility)
+   ================================================================ */
+header {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(10, 12, 30, 0.88);
+}
+.hero-frame {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+.card { will-change: auto; }
+
+.card, .cat-card, .deal, .feature, .review, .post, .partner, .stat,
+.faq-item, .summary, .cart-list, .auth-box, .contact-card, .contact-form,
+.doc, .dash-card, .dash-panel, .orders, .podium .top, .trust-badge,
+.pd-media.has-img, .cart-row {
+    box-shadow: var(--glass-edge), 0 8px 20px rgba(0, 0, 0, 0.26);
+}
+.card, .feature, .review, .post, .partner, .stat, .faq-item {
+    box-shadow: var(--glass-edge), 0 8px 20px rgba(0, 0, 0, 0.26);
+}
+
+
+footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 420px;
+}
+
+/* شیشه‌ی تار فقط وقتی پیام دیده می‌شه فعاله */
+.toast, .support-teaser {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+.toast.show, .support-teaser.show {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+.support-box { -webkit-backdrop-filter: none; backdrop-filter: none; background-color: rgba(14, 16, 34, 0.94); }
+.support-box.open { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background-color: rgba(14, 16, 34, 0.7); }
+
+
+/* ================================================================
+   ✦ ریزه‌کاری‌های زیبایی (الهام از سایت‌های نسل جدید) ✦
+   همه‌ی این‌ها سبکن: بدون انیمیشن بی‌نهایت و بدون شیشه‌ی تار اضافه.
+   ================================================================ */
+
+/* ----- خط لود بالای صفحه: حالت «در حال لود» موقع رفتن به صفحه‌ی دیگه ----- */
+.scroll-progress.loading {
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ----- دکمه‌ی برگشت به بالا (شیشه‌ای، گوشه‌ی پایین راست) ----- */
+.to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 22px;
+    z-index: 90;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    box-shadow: var(--glass-edge), 0 10px 24px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(14px) scale(0.9);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s;
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: rgba(88, 104, 255, 0.35); transform: translateY(-3px); }
+@media (max-width: 700px) {
+    .to-top { right: 14px; bottom: calc(96px + env(safe-area-inset-bottom)); width: 42px; height: 42px; }
+}
+
+/* ----- نور دنبال‌کننده‌ی موس روی کارت‌ها ----- */
+.card, .feature, .stat { position: relative; }
+.card::after, .feature::after, .stat::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(150, 165, 255, 0.17), transparent 70%);
+}
+.card:hover::after, .feature:hover::after, .stat:hover::after { opacity: 1; }
+
+/* ----- عکس کارت: موقع هاور آروم نزدیک می‌شه ----- */
+.card[style*=".svg"] .card-img {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-size 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card[style*=".svg"]:hover .card-img { background-size: 118% auto; }
+.card.sold[style*=".svg"]:hover .card-img { background-size: 100% auto; }
+
+/* ----- دانه‌ی ریز (grain) خیلی کم‌رنگ روی کل صفحه؛ حس «فیلم و حرفه‌ای» می‌ده ----- */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ----- خط نازک و محو بین بخش‌های صفحه‌ی اول ----- */
+.products + .products::before,
+.wave-divider + .products::before {
+    content: "";
+    display: block;
+    width: min(520px, 70%);
+    height: 1px;
+    margin: 0 auto 56px;
+    background: linear-gradient(90deg, transparent, rgba(158, 158, 255, 0.45), transparent);
+}
+.cat-page::before, .auth-page::before, .about-sec + .products::before { display: none; }
+
+/* ----- جزئیات کوچیک ----- */
+::selection { background: rgba(88, 104, 255, 0.55); color: #fff; }
+html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+
+/* نوار اسکرول باریک و هماهنگ با تم */
+html { scrollbar-width: thin; scrollbar-color: rgba(130, 145, 255, 0.45) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: rgba(130, 145, 255, 0.35);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(130, 145, 255, 0.6); background-clip: content-box; }
+
+/* حلقه‌ی فوکوس شیشه‌ای برای کلیدبورد */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, .buy-row:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(150, 165, 255, 0.55);
+}
+
+/* حس فشرده‌شدن موقع کلیک */
+.btn:active, .btn-sm:active, .buy-row:active, nav a:active, .cart-btn:active, .to-top:active {
+    transform: scale(0.96);
+}
+
+/* نشان‌های «پرفروش / تخفیف» یه درخشش ملایم می‌گیرن */
+.badge { box-shadow: 0 4px 14px rgba(57, 79, 240, 0.35); }
+.badge.off { box-shadow: 0 4px 14px rgba(226, 58, 94, 0.4); }
+
+/* قیمت‌ها کنار هم هم‌عرض و مرتب */
+.price, .num, .img-amount { font-variant-numeric: tabular-nums; }
+
+/* ردیف قیمت: وقتی هاور می‌شه، یه خط درخشان از بالا می‌گیره */
+.buy-row { position: relative; overflow: hidden; }
+
+/* عنوان بخش‌ها: خط زیرینِ خیلی نازک و رنگی زیر کلمه‌ی رنگی */
+.section-title span {
+    background: linear-gradient(180deg, #ffffff 0%, var(--accent-light) 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

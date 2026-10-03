@@ -159,7 +159,8 @@ document.querySelectorAll('.card').forEach(function (card) {
     if (media) {
         media.style.cursor = 'pointer';
         media.addEventListener('click', function () {
-            window.location.href = productUrl(card);
+            var u = productUrl(card);
+            if (window.shapurGo) { window.shapurGo(u); } else { window.location.href = u; }
         });
     }
 
@@ -242,29 +243,6 @@ function bumpCart() {
 
 updateCartCount();
 
-
-
-// ================================================
-// نوار پیشرفت اسکرول (باریک، بالای صفحه)
-// فقط یک خط نازکه که با اسکرول پر می‌شه؛ خیلی سبکه.
-// ================================================
-(function () {
-    const bar = document.createElement('div');
-    bar.className = 'scroll-progress';
-    document.body.appendChild(bar);
-
-    let ticking = false;
-    function update() {
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        const p = h > 0 ? Math.min(1, window.scrollY / h) : 0;
-        bar.style.transform = 'scaleX(' + p + ')';
-        ticking = false;
-    }
-    window.addEventListener('scroll', function () {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
-})();
 
 
 // ================================================
