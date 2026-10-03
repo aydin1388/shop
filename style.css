@@ -3446,8 +3446,7 @@ body::after { display: none; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .hero-img { animation: heroZoom 14s cubic-bezier(0.22, 1, 0.36, 1) both; }
-    @keyframes heroZoom { from { scale: 1.12; } to { scale: 1; } }
+    /* (زوم آروم عکس برداشته شد: روی لپ‌تاپ ضعیف سایت رو لگ می‌کرد) */
     .hero-cta .btn { animation: heroUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards; }
     .hero-cta .btn + .btn { animation-delay: 0.42s; }
     .scroll-cue::after { animation: cueDrop 1.6s ease-in-out 3; }
@@ -3467,3 +3466,25 @@ body::after { display: none; }
 .to-top { position: fixed; }
 .to-top .ring { position: absolute; inset: -3px; width: calc(100% + 6px); height: calc(100% + 6px); transform: rotate(-90deg); pointer-events: none; }
 .to-top .ring circle { fill: none; stroke: rgba(158, 158, 255, 0.9); stroke-width: 2.4; stroke-linecap: round; }
+
+
+/* ================================================================
+   ✦ بنر اصلی بزرگ‌تر (حس سایت‌های نسل جدید) ✦
+   - علامت اسکرول (موس کوچولو) زیر دکمه‌ها برداشته شد
+   - بنر تقریباً کل صفحه‌ی اول رو می‌گیره: ارتفاع صفحه منهای هدر (۱۳۱px روی دسکتاپ، ۸۰px روی موبایل)
+   - 100svh یعنی ارتفاع واقعی صفحه روی موبایل (بدون نوار آدرس)
+   ================================================================ */
+.scroll-cue { display: none; }
+.hero.hero-photo {
+    height: calc(100vh - 131px);
+    height: calc(100svh - 131px);
+    min-height: 560px;
+    max-height: 1100px;
+}
+.hero-cta { bottom: 80px; gap: 16px; }
+.hero-cta .btn { padding: 16px 38px; font-size: 18px; }
+@media (max-width: 800px) {
+    .hero.hero-photo { height: calc(100svh - 80px); min-height: 520px; }
+    .hero-cta { bottom: 64px; }
+    .hero-cta .btn { padding: 14px 28px; font-size: 16px; }
+}
