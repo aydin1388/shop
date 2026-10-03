@@ -3310,6 +3310,7 @@ header { transition: padding 0.35s ease, box-shadow 0.35s ease, background-color
 
 /* ----- نوار متحرک مزیت‌ها (ticker) ----- */
 .ticker {
+    direction: ltr;               /* نوار از چپ شروع بشه تا حرکتش بی‌وقفه و بدون جای خالی باشه */
     overflow: hidden;
     margin: 6px 0 4px;
     padding: 14px 0;
@@ -3318,14 +3319,15 @@ header { transition: padding 0.35s ease, box-shadow 0.35s ease, background-color
 }
 .ticker-track {
     display: flex;
-    gap: 14px;
+    gap: 0;                       /* فاصله رو با margin می‌دیم تا هر سه کپی دقیقاً هم‌اندازه بشن */
     width: max-content;
     direction: ltr;
-    animation: tickerMove 38s linear infinite;
+    animation: tickerMove 70s linear infinite;
     will-change: transform;
 }
 .ticker-track span {
     flex: none;
+    margin-right: 14px;
     padding: 9px 20px;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.10);
@@ -3336,7 +3338,7 @@ header { transition: padding 0.35s ease, box-shadow 0.35s ease, background-color
     white-space: nowrap;
 }
 /* (قبلاً با رفتن موس روی نوار می‌ایستاد؛ حالا ادامه می‌ده) */
-@keyframes tickerMove { to { transform: translate3d(-25%, 0, 0); } }
+@keyframes tickerMove { to { transform: translate3d(-33.3333%, 0, 0); } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
 
 
