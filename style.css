@@ -3335,6 +3335,133 @@ header { transition: padding 0.35s ease, box-shadow 0.35s ease, background-color
     font-weight: 600;
     white-space: nowrap;
 }
-.ticker:hover .ticker-track { animation-play-state: paused; }
+/* (قبلاً با رفتن موس روی نوار می‌ایستاد؛ حالا ادامه می‌ده) */
 @keyframes tickerMove { to { transform: translate3d(-25%, 0, 0); } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+
+/* ================================================================
+   ✦ سبک‌تر کردن سایت ✦
+   ۱) دانه‌ی روی کل صفحه (body::after) برداشته شد: یه لایه‌ی تمام‌صفحه بود که
+      فقط ۵٪ دیده می‌شد ولی کارت گرافیک ضعیف رو اذیت می‌کرد.
+   ۲) انیمیشن‌های بی‌پایان (شناور بودن سکه‌ها) برداشته شد؛ سایت وقتی کاری
+      نداره، هیچ کاری نمی‌کنه.
+   ۳) حلقه‌ی نبض دکمه‌ی پشتیبانی با box-shadow انیمیت می‌شد (هر فریم دوباره
+      رسم می‌شد، روی همه‌ی صفحه‌ها)؛ الان فقط با transform/opacity و فقط ۴ بار.
+   ۴) نوار متحرک وقتی دیده نمی‌شه می‌ایسته.
+   ۵) عکس کارت‌ها روی صفحه‌های پر از کارت (سی‌پی/آفرها/دوبل) فقط وقتی نزدیک
+      صفحه می‌رسن لود می‌شن (کلاس lz و img-on از ui.js میاد).
+   ================================================================ */
+body::after { display: none; }
+
+.banner-subject, .auth-subject, .hero-subject { animation: none !important; }
+
+.support-btn::after {
+    box-shadow: none;
+    border: 2px solid rgba(57, 79, 240, 0.55);
+    animation: support-ring 2.6s ease-out 4;
+}
+@keyframes support-ring {
+    0%   { transform: scale(1);    opacity: 0.8; }
+    100% { transform: scale(1.45); opacity: 0; }
+}
+
+.ticker.off .ticker-track { animation-play-state: paused; }
+
+.lz .card:not(.img-on) .card-img {
+    background-image:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.15)),
+        linear-gradient(135deg, #10121f, #1d2450 60%, #2a3fc4);
+}
+
+
+/* ================================================================
+   ✦ بنر اصلی: عکس تمام‌عرض (تخت جمشید / آرامگاه کوروش) ✦
+   عکس: images/hero-bg.jpg  (هر وقت عکس رو عوض کنی همین‌جا خودش عوض می‌شه)
+   - تمام‌عرض و بدون حاشیه
+   - اول یه زوم خیلی آروم (فقط یک بار) و موقع اسکرول کمی کندتر از صفحه می‌ره (پارالکس)
+   - پایین عکس آروم توی رنگ سایت محو می‌شه
+   ================================================================ */
+.hero.hero-photo {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: min(78vh, 680px);
+    min-height: 420px;
+    overflow: hidden;
+    background: #06070f;
+}
+.hero-img {
+    position: absolute;
+    left: 0; right: 0; top: -12%; bottom: -4%;     /* جا برای پارالکس */
+    background-image:
+        url('images/hero-bg.jpg'),
+        radial-gradient(900px 520px at 78% 20%, rgba(88, 104, 255, 0.55), transparent 70%),
+        radial-gradient(800px 500px at 15% 80%, rgba(139, 70, 255, 0.40), transparent 70%),
+        linear-gradient(180deg, #0b0d24, #06070f);
+    background-size: cover, auto, auto, auto;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    will-change: transform;
+}
+.hero-shade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(to bottom, rgba(6, 7, 15, 0.45) 0%, rgba(6, 7, 15, 0) 28%),
+        linear-gradient(to top, #06070f 2%, rgba(6, 7, 15, 0.55) 22%, rgba(6, 7, 15, 0) 55%);
+}
+.hero-cta {
+    position: absolute;
+    left: 0; right: 0; bottom: 64px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 0 18px;
+}
+.hero-photo + .wave-divider { display: none; }
+
+.scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    width: 22px;
+    height: 36px;
+    margin-left: -11px;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 14px;
+}
+.scroll-cue::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 7px;
+    width: 4px; height: 7px;
+    margin-left: -2px;
+    border-radius: 3px;
+    background: #fff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero-img { animation: heroZoom 14s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    @keyframes heroZoom { from { scale: 1.12; } to { scale: 1; } }
+    .hero-cta .btn { animation: heroUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards; }
+    .hero-cta .btn + .btn { animation-delay: 0.42s; }
+    .scroll-cue::after { animation: cueDrop 1.6s ease-in-out 3; }
+    @keyframes cueDrop {
+        0%   { translate: 0 0; opacity: 1; }
+        70%  { translate: 0 12px; opacity: 0; }
+        100% { translate: 0 0; opacity: 0; }
+    }
+}
+
+@media (max-width: 800px) {
+    .hero.hero-photo { height: 62vh; min-height: 360px; }
+    .hero-cta { bottom: 56px; }
+}
+
+/* حلقه‌ی پیشرفت اسکرول دور دکمه‌ی «برگشت به بالا» */
+.to-top { position: fixed; }
+.to-top .ring { position: absolute; inset: -3px; width: calc(100% + 6px); height: calc(100% + 6px); transform: rotate(-90deg); pointer-events: none; }
+.to-top .ring circle { fill: none; stroke: rgba(158, 158, 255, 0.9); stroke-width: 2.4; stroke-linecap: round; }

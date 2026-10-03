@@ -16,19 +16,41 @@
     top.setAttribute('aria-label', 'برگشت به بالا');
     top.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
     top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    // حلقه‌ی پیشرفت اسکرول دور دکمه (فقط یه attribute موقع اسکرول عوض می‌شه)
+    var NS = 'http://www.w3.org/2000/svg';
+    var ring = document.createElementNS(NS, 'svg');
+    ring.setAttribute('viewBox', '0 0 100 100');
+    ring.setAttribute('class', 'ring');
+    var rc = document.createElementNS(NS, 'circle');
+    rc.setAttribute('cx', '50'); rc.setAttribute('cy', '50'); rc.setAttribute('r', '48');
+    rc.style.strokeDasharray = '301.6';
+    rc.style.strokeDashoffset = '301.6';
+    ring.appendChild(rc);
+    top.appendChild(ring);
     document.body.appendChild(top);
 
     var navigating = false;
     var ticking = false;
 
+    // ارتفاع صفحه رو هر ۴۰۰ میلی‌ثانیه یه بار می‌خونیم (خوندنش هر فریم بی‌خودی سنگینه)
+    var cachedH = 0, cachedAt = -1000;
+    function pageH() {
+        var now = performance.now();
+        if (now - cachedAt > 400) {
+            cachedH = document.documentElement.scrollHeight - window.innerHeight;
+            cachedAt = now;
+        }
+        return cachedH;
+    }
     function update() {
         ticking = false;
-        var h = document.documentElement.scrollHeight - window.innerHeight;
+        var h = pageH();
         var y = window.scrollY;
+        var p = h > 0 ? Math.min(1, y / h) : 0;
         if (!navigating) {
-            var p = h > 0 ? Math.min(1, y / h) : 0;
             bar.style.transform = 'scaleX(' + p + ')';
         }
+        rc.style.strokeDashoffset = (301.6 * (1 - p)).toFixed(1);
         top.classList.toggle('show', y > 700);
     }
     window.addEventListener('scroll', function () {
@@ -134,11 +156,36 @@
     window.addEventListener('scroll', hdr, { passive: true });
     hdr();
 
+    // ----- عکس کارت‌ها فقط وقتی نزدیک صفحه می‌رسن لود می‌شن (روی صفحه‌های پر از کارت) -----
+    var lazyCards = document.querySelectorAll('.card');
+    if (lazyCards.length > 12 && 'IntersectionObserver' in window) {
+        root.classList.add('lz');
+        var imgIO = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                if (!en.isIntersecting) return;
+                en.target.classList.add('img-on');
+                imgIO.unobserve(en.target);
+            });
+        }, { rootMargin: '500px 0px' });
+        Array.prototype.forEach.call(lazyCards, function (c) { imgIO.observe(c); });
+    }
+
+    // ----- نوار متحرک وقتی دیده نمی‌شه می‌ایسته (کار الکی نکنه) -----
+    var tick = document.querySelector('.ticker');
+    if (tick && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+            tick.classList.toggle('off', !entries[0].isIntersecting);
+        }).observe(tick);
+    }
+
     if (reduce) return;
     root.classList.add('modern');
 
     // ----- ظاهر شدن موقع اسکرول -----
     var SEL = '.sec-tag, .section-title, .section-sub, .deal, .card, .feature, .stat, .review, .partner, .top, .post, .faq-item, .page-banner, .contact-card, .doc, .dash-card, .dash-panel, .cart-layout, .about-text, .ticker';
+    // صفحه‌های پر از کارت (سی‌پی، آفرها، دوبل): ۱۰۰ تا ۱۵۰ کارت رو یکی‌یکی انیمیت نمی‌کنیم، سنگینه
+    var manyCards = document.querySelectorAll('.card').length > 12;
+    if (manyCards) SEL = SEL.replace('.card, ', '');
     var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
     if ('IntersectionObserver' in window && els.length) {
         var io = new IntersectionObserver(function (entries) {
@@ -158,6 +205,20 @@
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
         els.forEach(function (el) { el.classList.add('rv'); io.observe(el); });
+    }
+
+    // ----- پارالکس عکس بنر اصلی: موقع اسکرول کمی کندتر از صفحه حرکت می‌کنه -----
+    var himg = document.querySelector('.hero-img');
+    if (himg) {
+        var pr = 0;
+        window.addEventListener('scroll', function () {
+            if (pr) return;
+            pr = requestAnimationFrame(function () {
+                pr = 0;
+                var y = window.scrollY;
+                if (y < 900) himg.style.translate = '0 ' + Math.min(y * 0.15, 80).toFixed(1) + 'px';
+            });
+        }, { passive: true });
     }
 
     if (!fine) return;
