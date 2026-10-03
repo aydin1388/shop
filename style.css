@@ -3226,3 +3226,115 @@ footer .foot-grid {
     pointer-events: none;
 }
 .card-img .img-label::before { content: "👑 "; font-size: 11px; }
+
+
+/* ================================================================
+   ✦ مدرن‌تر کردن سایت: انیمیشن‌های سبک ✦
+   همه‌ی حرکت‌ها فقط با transform و opacity ساخته شدن (کارت گرافیک لازم نیست)
+   و اگه «کاهش حرکت» روشن باشه اصلاً اجرا نمی‌شن.
+   برای برگشت: از همین کامنت تا آخر فایل رو پاک کن.
+   ================================================================ */
+@media (prefers-reduced-motion: no-preference) {
+
+    /* ----- ظاهر شدن موقع اسکرول (کلاس rv رو جاوااسکریپت می‌ذاره و بعد برمی‌داره) ----- */
+    .modern .rv {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0) scale(0.985);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .modern .rv.in { opacity: 1; transform: none; }
+
+    /* ----- ورود هیرو موقع باز شدن صفحه ----- */
+    .hero-content > * { animation: heroUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+    .hero-content > :nth-child(1) { animation-delay: 0.05s; }
+    .hero-content > :nth-child(2) { animation-delay: 0.15s; }
+    .hero-content > :nth-child(3) { animation-delay: 0.25s; }
+    .hero-content > :nth-child(4) { animation-delay: 0.35s; }
+    .hero-content > :nth-child(5) { animation-delay: 0.42s; }
+    @keyframes heroUp { from { opacity: 0; translate: 0 28px; } to { opacity: 1; translate: 0 0; } }
+
+    /* ----- سکه‌ها آروم شناورن (rotate و scale جدا از transform) ----- */
+    .banner-subject, .auth-subject { animation: coinFloat 7s ease-in-out infinite; }
+    @keyframes coinFloat {
+        0%, 100% { rotate: -1.8deg; scale: 1; }
+        50% { rotate: 1.8deg; scale: 1.035; }
+    }
+    .hero-subject { transition: translate 0.35s ease-out; }
+
+    /* ----- صفحه آروم باز می‌شه و موقع رفتن آروم کم‌رنگ ----- */
+    body { animation: pageIn 0.5s ease-out both; }
+    @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+    body.leaving > *:not(.scroll-progress):not(.support):not(.toast):not(.to-top) {
+        opacity: 0.25;
+        transition: opacity 0.55s ease;
+    }
+
+    /* ----- دکمه‌ها: حرکت مغناطیسی نرم + ripple ----- */
+    .btn, .btn-sm, .cart-btn { transition-property: transform, box-shadow, background, border-color, color, translate; }
+    .btn, .btn-sm { position: relative; overflow: hidden; }
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 70%);
+        transform: scale(0);
+        opacity: 0.9;
+        pointer-events: none;
+        animation: ripple 0.65s ease-out forwards;
+    }
+    @keyframes ripple { to { transform: scale(1); opacity: 0; } }
+
+    /* ----- تیتر بخش‌ها: خط زیر تیتر موقع دیده شدن کشیده می‌شه ----- */
+    .section-title { position: relative; }
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 56px;
+        height: 3px;
+        margin: 12px auto 0;
+        border-radius: 3px;
+        background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+        transform-origin: center;
+    }
+    .modern .section-title.rv::after { transform: scaleX(0); }
+    .section-title::after { transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s; }
+    .page-banner .section-title::after, .page-narrow .section-title::after { margin-inline: 0 auto; }
+}
+
+/* ----- هدر: موقع اسکرول جمع‌وجور می‌شه ----- */
+header { transition: padding 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease; }
+.logo, .slogan { transition: font-size 0.35s ease, opacity 0.3s ease, max-height 0.35s ease, margin 0.35s ease; }
+.slogan { max-height: 24px; overflow: hidden; }
+.scrolled header { padding-top: 10px; padding-bottom: 10px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(88, 104, 255, 0.28); }
+.scrolled .logo { font-size: 36px; }
+.scrolled .slogan { opacity: 0; max-height: 0; }
+
+/* ----- نوار متحرک مزیت‌ها (ticker) ----- */
+.ticker {
+    overflow: hidden;
+    margin: 6px 0 4px;
+    padding: 14px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.ticker-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    direction: ltr;
+    animation: tickerMove 38s linear infinite;
+    will-change: transform;
+}
+.ticker-track span {
+    flex: none;
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--muted, #aab3d6);
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes tickerMove { to { transform: translate3d(-25%, 0, 0); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }

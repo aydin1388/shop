@@ -109,3 +109,106 @@
         }, { passive: true });
     }
 })();
+
+
+// ================================================
+// ✦ لایه‌ی مدرن: انیمیشن‌های سبک (فقط transform و opacity، همه GPU) ✦
+//  ۱) ظاهر شدن آروم بخش‌ها و کارت‌ها موقع اسکرول (یک‌بار، پله‌ای)
+//  ۲) هدر که موقع اسکرول جمع‌وجورتر می‌شه
+//  ۳) دکمه‌های مغناطیسی + نور روی دکمه‌ها موقع کلیک (ripple)
+//  ۴) پارالکس خیلی ملایم سکه‌ی بالای صفحه با موس
+//  ۵) محو شدن آروم صفحه موقع رفتن به صفحه‌ی بعد
+// اگه کاربر «کاهش حرکت» رو توی سیستمش روشن کرده باشه، هیچ‌کدوم اجرا نمی‌شن.
+// ================================================
+(function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+    var root = document.documentElement;
+
+    // ----- هدر جمع‌وجور موقع اسکرول -----
+    var small = false;
+    function hdr() {
+        var s = window.scrollY > 60;
+        if (s !== small) { small = s; document.body.classList.toggle('scrolled', s); }
+    }
+    window.addEventListener('scroll', hdr, { passive: true });
+    hdr();
+
+    if (reduce) return;
+    root.classList.add('modern');
+
+    // ----- ظاهر شدن موقع اسکرول -----
+    var SEL = '.sec-tag, .section-title, .section-sub, .deal, .card, .feature, .stat, .review, .partner, .top, .post, .faq-item, .page-banner, .contact-card, .doc, .dash-card, .dash-panel, .cart-layout, .about-text, .ticker';
+    var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
+    if ('IntersectionObserver' in window && els.length) {
+        var io = new IntersectionObserver(function (entries) {
+            var d = 0;
+            entries.forEach(function (en) {
+                if (!en.isIntersecting) return;
+                var el = en.target;
+                io.unobserve(el);
+                var delay = Math.min(d, 6) * 70;
+                d++;
+                el.style.transitionDelay = delay + 'ms';
+                el.classList.add('in');
+                setTimeout(function () {
+                    el.classList.remove('rv', 'in');
+                    el.style.transitionDelay = '';
+                }, 900 + delay);
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+        els.forEach(function (el) { el.classList.add('rv'); io.observe(el); });
+    }
+
+    if (!fine) return;
+
+    // ----- دکمه‌های مغناطیسی (property جدای transform، با hover قاطی نمی‌شه) -----
+    document.addEventListener('pointermove', function (e) {
+        var b = e.target.closest ? e.target.closest('.btn, .btn-sm, .cart-btn') : null;
+        if (!b) return;
+        var r = b.getBoundingClientRect();
+        var x = (e.clientX - (r.left + r.width / 2)) / r.width * 10;
+        var y = (e.clientY - (r.top + r.height / 2)) / r.height * 8;
+        b.style.translate = x.toFixed(1) + 'px ' + y.toFixed(1) + 'px';
+    }, { passive: true });
+    document.addEventListener('pointerout', function (e) {
+        var b = e.target.closest ? e.target.closest('.btn, .btn-sm, .cart-btn') : null;
+        if (b && !b.contains(e.relatedTarget)) b.style.translate = '';
+    }, { passive: true });
+
+    // ----- نور ripple موقع کلیک روی دکمه‌ها -----
+    document.addEventListener('pointerdown', function (e) {
+        var b = e.target.closest ? e.target.closest('.btn, .btn-sm') : null;
+        if (!b) return;
+        var r = b.getBoundingClientRect();
+        var s = document.createElement('span');
+        s.className = 'ripple';
+        var size = Math.max(r.width, r.height) * 1.6;
+        s.style.width = s.style.height = size + 'px';
+        s.style.left = (e.clientX - r.left - size / 2) + 'px';
+        s.style.top = (e.clientY - r.top - size / 2) + 'px';
+        b.appendChild(s);
+        setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 650);
+    }, { passive: true });
+
+    // ----- پارالکس ملایم سکه‌ی هیرو با موس -----
+    var hero = document.querySelector('.hero-frame');
+    var coin = document.querySelector('.hero-subject');
+    if (hero && coin) {
+        var hr = 0, hx = 0, hy = 0;
+        hero.addEventListener('pointermove', function (e) {
+            var r = hero.getBoundingClientRect();
+            hx = ((e.clientX - r.left) / r.width - 0.5) * 22;
+            hy = ((e.clientY - r.top) / r.height - 0.5) * 16;
+            if (!hr) hr = requestAnimationFrame(function () { hr = 0; coin.style.translate = (-hx).toFixed(1) + 'px ' + (-hy).toFixed(1) + 'px'; });
+        }, { passive: true });
+        hero.addEventListener('pointerleave', function () { coin.style.translate = ''; }, { passive: true });
+    }
+
+    // ----- موقع رفتن به صفحه‌ی دیگه، محتوا آروم کم‌رنگ می‌شه -----
+    var oldGo = window.shapurGo;
+    if (oldGo) {
+        window.shapurGo = function (u) { document.body.classList.add('leaving'); oldGo(u); };
+    }
+    window.addEventListener('pageshow', function (e) { if (e.persisted) document.body.classList.remove('leaving'); });
+})();
