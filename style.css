@@ -3187,3 +3187,42 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+
+/* ===== فوتر تمام‌عرض: محتوای سمت راست درست مثل هدر به لبه می‌چسبه ===== */
+footer {
+    border-left: 0;
+    border-right: 0;
+    padding-left: 44px;
+    padding-right: 44px;
+}
+footer .foot-grid {
+    max-width: none;
+    margin: 0;
+    grid-template-columns: 2fr 1fr 1fr;
+}
+@media (max-width: 800px) {
+    footer { padding-left: 22px; padding-right: 22px; }
+    footer .foot-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ===== اسم پادشاه روی عکس هر محصول (برچسب کوچک گوشه‌ی پایین‌چپ) ===== */
+.card-img .img-label {
+    position: absolute;
+    left: 10px;
+    bottom: 8px;
+    font-family: 'Estedad', 'Vazirmatn', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    background: rgba(6, 8, 20, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    padding: 4px 11px;
+    text-shadow: none;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.card-img .img-label::before { content: "👑 "; font-size: 11px; }
