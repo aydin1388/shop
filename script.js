@@ -241,3 +241,59 @@ function bumpCart() {
 }
 
 updateCartCount();
+
+
+
+// ================================================
+// نوار پیشرفت اسکرول (باریک، بالای صفحه)
+// فقط یک خط نازکه که با اسکرول پر می‌شه؛ خیلی سبکه.
+// ================================================
+(function () {
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+
+    let ticking = false;
+    function update() {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const p = h > 0 ? Math.min(1, window.scrollY / h) : 0;
+        bar.style.transform = 'scaleX(' + p + ')';
+        ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+})();
+
+
+// ================================================
+// شمارش آمار: وقتی بخش آمار دیده شد، عددها از صفر بالا میان
+// (فقط یک بار و فقط چند ثانیه؛ بعدش هیچ کاری نمی‌کنه)
+// ================================================
+(function () {
+    const nums = document.querySelectorAll('.stat .num[data-count]');
+    if (!nums.length || !('IntersectionObserver' in window)) return;
+
+    function run(el) {
+        const target = Number(el.dataset.count);
+        const pre = el.dataset.prefix || '';
+        const suf = el.dataset.suffix || '';
+        const start = performance.now();
+        const dur = 1200;
+        function frame(now) {
+            const t = Math.min(1, (now - start) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = pre + Math.round(target * eased).toLocaleString('fa-IR') + suf;
+            if (t < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+    }
+
+    const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { io.observe(n); });
+})();
