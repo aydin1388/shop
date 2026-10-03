@@ -2924,3 +2924,31 @@ nav a { font-size: 17px; padding: 10px 22px; margin: 0 4px; }
     .logo { font-size: 38px; }
     .cart-btn { width: 44px; height: 44px; }
 }
+
+
+/* ===== دکمه‌های هدر: موقع رفتن موس روشون رنگ عوض می‌کنن و بالا میان ===== */
+nav a {
+    transition: color 0.2s, background 0.2s, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s;
+}
+nav a:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, #4a5dff, #2f3fd6);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(57, 79, 240, 0.45);
+}
+.btn-sm {
+    transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s;
+}
+.btn-sm:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, #4a5dff, #2f3fd6);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(57, 79, 240, 0.45);
+}
+.cart-btn:hover {
+    background: linear-gradient(135deg, #4a5dff, #2f3fd6);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(57, 79, 240, 0.45);
+}
