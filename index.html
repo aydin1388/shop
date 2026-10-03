@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شاپور | شاپ گیمرهای ایرانی</title>
+
+
+    <!-- فایل استایل (ظاهر سایت) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- هدر: بخش بالای صفحه -->
+    <header>
+        <!-- لوگو و شعار -->
+        <div class="brand">
+            <a href="index.html" class="logo-link"><h1 class="logo">شاپور</h1></a>
+            <p class="slogan">سلاح پادشاهان، برای میدان نبرد</p>
+        </div>
+
+        <!-- منو -->
+        <nav>
+            <a href="index.html">خانه</a>
+            <a href="cp.html">محصولات</a>
+            <a href="offers.html">آفرها</a>
+            <a href="contact.html">ارتباط با ما</a>
+        </nav>
+
+        <!-- حساب کاربری و سبد خرید -->
+        <div class="actions">
+            <a href="auth.html" class="btn btn-sm">ورود | ثبت‌نام</a>
+            <a href="cart.html" class="cart-btn" title="سبد خرید">
+                🛒<span class="cart-count">۰</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ===== بنر اصلی (Hero) ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>آماده‌ی نبردی؟</h2>
+            <p>CP کالاف دیوتی موبایل رو سریع، امن و با بهترین قیمت شارژ کن و با قوی‌ترین گان‌ها و اسکین‌ها وارد میدان شو.</p>
+            <!-- مزیت‌های اصلی -->
+            <div class="chips">
+                <span class="chip">⚡ تحویل و پیگیری سریع</span>
+                <span class="chip">💳 خرید بدون واسطه</span>
+                <span class="chip">💰 قیمت رقابتی</span>
+                <span class="chip">🎧 پشتیبانی ۲۴ ساعته</span>
+            </div>
+
+            <a href="cp.html" class="btn">خرید آنی</a>
+            <a href="#contact" class="btn btn-outline">ارتباط با ما</a>
+        </div>
+    </section>
+
+
+    <!-- ===== دسته‌بندی محصولات ===== -->
+    <section class="products">
+        <h2 class="section-title">دسته‌بندی <span>محصولات</span></h2>
+
+        <!-- اسلایدر افقی -->
+        <div class="slider">
+            <button class="slide-btn prev" data-dir="1" aria-label="قبلی">‹</button>
+
+            <div class="slider-track" id="cat-track">
+                <a href="cp.html" class="cat-card" style="--img: url('images/cp-880.jpg')">
+                    <span>خرید سی پی کالاف دیوتی</span>
+                </a>
+                <a href="offers.html" class="cat-card" style="--img: url('images/battlepass.jpg')">
+                    <span>آفرهای کالاف دیوتی</span>
+                </a>
+                <a href="double.html" class="cat-card" style="--img: url('images/cp-5000.jpg')">
+                    <span>سی پی دوبل</span>
+                </a>
+                <a href="offers.html" class="cat-card" style="--img: url('images/supply.jpg')">
+                    <span>بتل پس فصلی</span>
+                </a>
+                <a href="offers.html" class="cat-card" style="--img: url('images/bundle.jpg')">
+                    <span>باندل و اسکین</span>
+                </a>
+                <a href="offers.html" class="cat-card" style="--img: url('images/cp-2400.jpg')">
+                    <span>استرانگ باکس و لاکی باکس</span>
+                </a>
+            </div>
+
+            <button class="slide-btn next" data-dir="-1" aria-label="بعدی">›</button>
+        </div>
+    </section>
+
+    <!-- ===== پیشنهاد ویژه با شمارش معکوس ===== -->
+    <section class="products">
+        <h2 class="section-title">پیشنهاد <span>ویژه</span></h2>
+
+        <div class="deal" style="--img: url('images/cp-880.jpg')">
+            <div class="deal-body">
+                <span class="deal-tag">پیشنهاد محدود</span>
+                <h3>خرید ۸۸۰ سی پی سوپر فست</h3>
+                <p class="deal-desc">تحویل زیر ۲۰ دقیقه، فقط تا پایان امروز با تخفیف.</p>
+
+                <div class="prices">
+                    <span class="old">۵۲۰,۰۰۰</span>
+                    <span class="new">۴۶۹,۰۰۰ تومان</span>
+                </div>
+
+                <!-- شمارش معکوس تا پایان امروز -->
+                <div class="countdown" id="countdown">
+                    <div class="unit"><b id="cd-h">۰۰</b><span>ساعت</span></div>
+                    <div class="unit"><b id="cd-m">۰۰</b><span>دقیقه</span></div>
+                    <div class="unit"><b id="cd-s">۰۰</b><span>ثانیه</span></div>
+                </div>
+
+                <a href="cp.html" class="btn">خرید فوری</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== محصولات ویژه ===== -->
+    <section class="products">
+        <h2 class="section-title">محصولات <span>ویژه</span></h2>
+
+        <div class="grid">
+            <div class="card" style="--img: url('images/cp-10800.jpg')">
+                <span class="badge off">۱۰٪ تخفیف</span>
+                <div class="card-img">
+                    <span class="img-amount" dir="ltr">10800 CP</span>
+                    <span class="img-label">بسته‌ی شاهانه</span>
+                    <span class="details">مشاهده جزئیات</span>
+                </div>
+                <div class="card-body">
+                    <h3>پک بزرگ ۱۰۸۰۰ سی پی</h3>
+                    <div class="meta">
+                        <span class="rate">★ ۵.۰</span>
+                        <span class="tag">بیشترین صرفه، تحویل سریع</span>
+                    </div>
+                    <div class="buy-row">
+                        <span class="price">۱۵,۵۹۹,۰۰۰ تومان</span>
+                        <span class="buy-link">خرید</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="--img: url('images/battlepass.jpg')">
+                <span class="badge off">جدید</span>
+                <div class="card-img">
+                    <span class="img-label">بتل پس + ۲۲۰ CP</span>
+                    <span class="details">مشاهده جزئیات</span>
+                </div>
+                <div class="card-body">
+                    <h3>پک بتل پس فصلی به‌همراه سی پی</h3>
+                    <div class="meta">
+                        <span class="rate">★ ۴.۸</span>
+                        <span class="tag">مناسب شروع فصل</span>
+                    </div>
+                    <div class="buy-row">
+                        <span class="price">۵۷۹,۰۰۰ تومان</span>
+                        <span class="buy-link">خرید</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="--img: url('images/bundle.jpg')">
+                <span class="badge off">محدود</span>
+                <div class="card-img">
+                    <span class="img-label">باندل افسانه‌ای</span>
+                    <span class="details">مشاهده جزئیات</span>
+                </div>
+                <div class="card-body">
+                    <h3>باندل اسلحه‌ی لجندری</h3>
+                    <div class="meta">
+                        <span class="rate">★ ۴.۹</span>
+                        <span class="tag">موجودی محدود</span>
+                    </div>
+                    <div class="buy-row">
+                        <span class="price">۸۹۰,۰۰۰ تومان</span>
+                        <span class="buy-link">خرید</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== پارتنرهای رسمی ===== -->
+    <section class="products">
+        <h2 class="section-title">پارتنرهای <span>رسمی</span></h2>
+        <p class="section-sub">استریمرها و سازنده‌های محتوایی که شاپور رو معرفی می‌کنن. این بخش بعداً با پارتنرهای واقعی خودت پر می‌شه.</p>
+
+        <div class="partners">
+            <div class="partner"><div class="p-ava">🎮</div><b>—</b><span class="small">@—</span><a href="#" class="p-watch">مشاهده ویدئو</a></div>
+            <div class="partner"><div class="p-ava">🎥</div><b>—</b><span class="small">@—</span><a href="#" class="p-watch">مشاهده ویدئو</a></div>
+            <div class="partner"><div class="p-ava">🕹️</div><b>—</b><span class="small">@—</span><a href="#" class="p-watch">مشاهده ویدئو</a></div>
+            <div class="partner"><div class="p-ava">🎯</div><b>—</b><span class="small">@—</span><a href="#" class="p-watch">مشاهده ویدئو</a></div>
+        </div>
+        <p class="note">* این بخش نمونه‌ست و باید با پارتنرهای واقعی پر بشه.</p>
+    </section>
+
+    <!-- ===== بازخورد مشتریان =====
+         این نظرها فعلاً نمونه‌ان. حتماً با نظرهای واقعی مشتری‌های خودت جایگزینشون کن. -->
+    <section class="products">
+        <h2 class="section-title">بازخورد <span>مشتریان</span></h2>
+        <div class="reviews">
+            <div class="review"><div class="stars">★★★★★</div><p>جای نظر واقعی مشتری</p><span class="who">— نام مشتری</span></div>
+            <div class="review"><div class="stars">★★★★★</div><p>جای نظر واقعی مشتری</p><span class="who">— نام مشتری</span></div>
+            <div class="review"><div class="stars">★★★★★</div><p>جای نظر واقعی مشتری</p><span class="who">— نام مشتری</span></div>
+            <div class="review"><div class="stars">★★★★★</div><p>جای نظر واقعی مشتری</p><span class="who">— نام مشتری</span></div>
+        </div>
+        <p class="note">* این بخش نمونه‌ست و باید با نظرهای واقعی پر بشه.</p>
+    </section>
+
+    <!-- ===== برترین کاربران ===== -->
+    <section class="products">
+        <h2 class="section-title">برترین <span>کاربران</span></h2>
+
+        <div class="podium">
+            <div class="top rank2">
+                <div class="medal">🥈</div>
+                <b class="uname">—</b>
+                <span class="small">تعداد خرید: —</span>
+                <span class="amount">— تومان</span>
+            </div>
+
+            <div class="top rank1">
+                <div class="medal">👑</div>
+                <b class="uname">—</b>
+                <span class="small">تعداد خرید: —</span>
+                <span class="amount">— تومان</span>
+            </div>
+
+            <div class="top rank3">
+                <div class="medal">🥉</div>
+                <b class="uname">—</b>
+                <span class="small">تعداد خرید: —</span>
+                <span class="amount">— تومان</span>
+            </div>
+        </div>
+        <p class="note">* بعد از راه‌اندازی فروش، این جدول از سفارش‌های واقعی پر می‌شه.</p>
+    </section>
+
+    <!-- ===== سفارش‌های اخیر ===== -->
+    <section class="products">
+        <h2 class="section-title">سفارش‌های <span>اخیر</span></h2>
+
+        <div class="orders">
+            <div class="order head">
+                <span>محصول</span>
+                <span>زمان</span>
+                <span>وضعیت</span>
+            </div>
+
+            <div class="order">
+                <span>—</span>
+                <span class="small">—</span>
+                <span class="state done">در انتظار داده‌ی واقعی</span>
+            </div>
+
+            <div class="order">
+                <span>—</span>
+                <span class="small">—</span>
+                <span class="state done">در انتظار داده‌ی واقعی</span>
+            </div>
+
+            <div class="order">
+                <span>—</span>
+                <span class="small">—</span>
+                <span class="state done">در انتظار داده‌ی واقعی</span>
+            </div>
+        </div>
+        <p class="note">* این لیست وقتی سایت روی سرور بیاد، خودکار از سفارش‌های واقعی پر می‌شه.</p>
+    </section>
+
+    <!-- ===== اخبار ===== -->
+    <section class="products">
+        <h2 class="section-title">اخبار <span>کالاف</span></h2>
+        <div class="news">
+            <article class="post"><span class="cat-tag">اخبار کالاف</span><h3>عنوان خبر اول</h3><p>خلاصه‌ی کوتاه خبر این‌جا نوشته می‌شه.</p></article>
+            <article class="post"><span class="cat-tag">اخبار کالاف</span><h3>عنوان خبر دوم</h3><p>خلاصه‌ی کوتاه خبر این‌جا نوشته می‌شه.</p></article>
+            <article class="post"><span class="cat-tag">کالاف استوری</span><h3>عنوان خبر سوم</h3><p>خلاصه‌ی کوتاه خبر این‌جا نوشته می‌شه.</p></article>
+        </div>
+    </section>
+
+    <!-- ===== سوالات متداول ===== -->
+    <section id="faq" class="products">
+        <h2 class="section-title">سوالات <span>متداول</span></h2>
+        <div class="faq">
+            <div class="faq-item">
+                <div class="q">سفارشم چقدر طول می‌کشه؟</div>
+                <div class="a-wrap"><p class="a">معمولاً بین ۱ تا ۲۰ دقیقه. در ساعت‌های شلوغ ممکنه کمی بیشتر بشه.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="q">چه اطلاعاتی برای شارژ لازمه؟</div>
+                <div class="a-wrap"><p class="a">آیدی عددی اکانت کالاف دیوتی موبایلت. رمز اکانت هیچ‌وقت ازت خواسته نمی‌شه.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="q">اگه سفارشم انجام نشد چی؟</div>
+                <div class="a-wrap"><p class="a">با پشتیبانی تماس بگیر؛ یا سفارش انجام می‌شه یا مبلغ برمی‌گرده.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="q">روش پرداخت چیه؟</div>
+                <div class="a-wrap"><p class="a">پرداخت آنلاین از طریق درگاه بانکی.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== درباره شاپور + آمار ===== -->
+    <section class="products about-sec">
+        <h2 class="section-title">درباره <span>شاپور</span></h2>
+        <p class="about-text">شاپور یکی از مرجع‌های خرید سی پی کالاف دیوتی موبایل با پایین‌ترین قیمت و تحویل سوپرفسته. خرید مستقیم و بدون واسطه انجام می‌شه، سفارش‌ها با رسید و اسکرین‌رکورد ثبت می‌شن و پشتیبانی تا لحظه‌ی تحویل کنارته.</p>
+        <div class="stats">
+            <div class="stat">
+                <span class="num">+۴۰</span>
+                <span class="lbl">نیروی واریز</span>
+            </div>
+            <div class="stat">
+                <span class="num">۲۴/۷</span>
+                <span class="lbl">پشتیبانی</span>
+            </div>
+            <div class="stat">
+                <span class="num" dir="ltr">&lt;۱۰</span>
+                <span class="lbl">دقیقه تحویل</span>
+            </div>
+            <div class="stat">
+                <span class="num">۱۰۰٪</span>
+                <span class="lbl">قانونی و مطمئن</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== فوتر ===== -->
+    <footer id="contact">
+        <div class="foot-grid">
+            <div>
+                <h3 class="logo foot-logo">شاپور</h3>
+                <p class="small">شاپ گیمرهای ایرانی؛ خرید CP و آفرهای کالاف دیوتی موبایل با تحویل سریع.</p>
+            </div>
+            <div>
+                <h4>دسترسی سریع</h4>
+                <a href="cp.html">بسته‌های CP</a>
+                <a href="offers.html">آفرهای ویژه</a>
+                <a href="terms.html">قوانین و مقررات</a>
+                <a href="index.html#faq">سوالات متداول</a>
+            </div>
+            <div>
+                <h4>ارتباط با ما</h4>
+                <a href="contact.html">تلگرام پشتیبانی</a>
+                <a href="contact.html">اینستاگرام</a>
+                <a href="contact.html">ایمیل</a>
+            </div>
+        </div>
+        <div class="trust">
+            <span class="trust-badge">🔒 نماد اعتماد الکترونیک</span>
+            <span class="trust-badge">🛡️ تجارت مطمئن و امن</span>
+            <span class="trust-badge">💳 پرداخت از درگاه بانکی معتبر</span>
+        </div>
+        <p class="copy">© تمام حقوق برای شاپور محفوظ است.</p>
+    </footer>
+
+    <!-- نوار پایین صفحه (فقط روی موبایل دیده می‌شه) -->
+    <nav class="bottom-bar">
+        <a href="index.html"><span>🏠</span>خانه</a>
+        <a href="cp.html"><span>🗂️</span>محصولات</a>
+        <a href="cart.html"><span>🛒</span>سبد</a>
+        <a href="#"><span>📦</span>سفارش‌ها</a>
+        <a href="auth.html"><span>👤</span>حساب</a>
+    </nav>
+
+    <!-- فایل جاوااسکریپت (افکت‌های حرکتی) -->
+    <!-- ===== دکمه و پنجره‌ی پشتیبانی (شناور) ===== -->
+    <div class="support" id="support">
+        <div class="support-box" id="support-box">
+            <div class="support-head">
+                <div>
+                    <b>پشتیبانی شاپور</b>
+                    <span class="online">● آنلاین</span>
+                </div>
+                <button class="support-close" id="support-close" aria-label="بستن">✕</button>
+            </div>
+            <div class="support-body">
+                <div class="support-msg">سلام! 👋 چطور می‌تونم کمکت کنم؟ سفارش‌ها معمولاً زیر ۲۰ دقیقه تحویل می‌شن.</div>
+                <a href="#" class="support-link">💬 چت در تلگرام</a>
+                <a href="index.html#faq" class="support-link">❓ سوالات متداول</a>
+                <a href="contact.html" class="support-link">📞 راه‌های ارتباطی</a>
+            </div>
+            <div class="support-foot">
+                <input type="text" placeholder="پیامت رو بنویس..." id="support-input">
+                <button id="support-send" aria-label="ارسال">↩</button>
+            </div>
+        </div>
+        <button class="support-btn" id="support-btn" aria-label="پشتیبانی"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="3.5" height="5.5" rx="1.4"/><rect x="18" y="13" width="3.5" height="5.5" rx="1.4"/><path d="M20 18.5v.5a3 3 0 0 1-3 3h-3"/><circle cx="12" cy="9.2" r="2.6"/><path d="M7.5 16.5a4.7 4.7 0 0 1 9 0"/></svg></button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="support.js"></script>
+</body>
+</html>

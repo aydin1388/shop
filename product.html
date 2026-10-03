@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزئیات محصول | شاپور</title>
+
+
+    <!-- فایل استایل (ظاهر سایت) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- هدر: بخش بالای صفحه -->
+    <header>
+        <!-- لوگو و شعار -->
+        <div class="brand">
+            <a href="index.html" class="logo-link"><h1 class="logo">شاپور</h1></a>
+            <p class="slogan">سلاح پادشاهان، برای میدان نبرد</p>
+        </div>
+
+        <!-- منو -->
+        <nav>
+            <a href="index.html">خانه</a>
+            <a href="#cp">محصولات</a>
+            <a href="#offers">آفرها</a>
+            <a href="contact.html">ارتباط با ما</a>
+        </nav>
+
+        <!-- حساب کاربری و سبد خرید -->
+        <div class="actions">
+            <a href="auth.html" class="btn btn-sm">ورود | ثبت‌نام</a>
+            <a href="cart.html" class="cart-btn" title="سبد خرید">
+                🛒<span class="cart-count">۰</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ===== صفحه‌ی جزئیات محصول ===== -->
+    <section class="products product-page">
+        <a href="index.html" class="back-link top">← برگشت به فروشگاه</a>
+
+        <div class="pd-layout">
+            <!-- تصویر بزرگ محصول -->
+            <div class="pd-media" id="pd-media">
+                <span class="pd-amount" id="pd-amount"></span>
+            </div>
+
+            <!-- اطلاعات و خرید -->
+            <div class="pd-info">
+                <h1 id="pd-title">—</h1>
+                <div class="meta">
+                    <span class="rate" id="pd-rate">★ ۴.۹</span>
+                    <span class="tag">تحویل ۱ تا ۲۰ دقیقه، سوپر فست قانونی</span>
+                </div>
+
+                <p class="pd-desc" id="pd-desc">
+                    این بسته مستقیم و قانونی روی اکانت کالاف دیوتی موبایلت شارژ می‌شه.
+                    فقط کافیه آیدی عددی اکانتت رو وارد کنی؛ رمز اکانتت هیچ‌وقت خواسته نمی‌شه.
+                </p>
+
+                <div class="pd-price" id="pd-price">—</div>
+
+                <!-- آیدی و تعداد -->
+                <label class="field">
+                    <span>آیدی عددی اکانت</span>
+                    <input type="text" id="pd-gameid" placeholder="مثلاً ۱۲۳۴۵۶۷۸۹" inputmode="numeric">
+                </label>
+
+                <div class="pd-qty-row">
+                    <span>تعداد</span>
+                    <div class="qty">
+                        <button id="pd-minus">−</button>
+                        <b id="pd-qty">۱</b>
+                        <button id="pd-plus">+</button>
+                    </div>
+                </div>
+
+                <button class="btn pd-add" id="pd-add">افزودن به سبد</button>
+                <p class="cart-note" id="pd-msg">رمز اکانتت هیچ‌وقت ازت خواسته نمی‌شه.</p>
+            </div>
+        </div>
+
+        <!-- چطور تحویل می‌گیرم -->
+        <div class="pd-how">
+            <h2 class="section-title">چطور <span>تحویل می‌گیرم؟</span></h2>
+            <div class="steps">
+                <div class="step"><span class="num">۱</span><h3>آیدی رو وارد کن</h3><p>آیدی عددی اکانتت رو از پروفایل بازی بردار و این‌جا بزن.</p></div>
+                <div class="step"><span class="num">۲</span><h3>پرداخت کن</h3><p>سفارش رو ثبت کن و پرداخت رو انجام بده.</p></div>
+                <div class="step"><span class="num">۳</span><h3>تحویل بگیر</h3><p>CP زیر ۲۰ دقیقه روی اکانتت می‌شینه و پیامک تأیید می‌گیری.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== فوتر ===== -->
+    <footer id="contact">
+        <div class="foot-grid">
+            <div>
+                <h3 class="logo foot-logo">شاپور</h3>
+                <p class="small">شاپ گیمرهای ایرانی؛ خرید CP و آفرهای کالاف دیوتی موبایل با تحویل سریع.</p>
+            </div>
+            <div>
+                <h4>دسترسی سریع</h4>
+                <a href="index.html#cp">بسته‌های CP</a>
+                <a href="index.html#offers">آفرهای ویژه</a>
+                <a href="terms.html">قوانین و مقررات</a>
+                <a href="index.html#faq">سوالات متداول</a>
+            </div>
+            <div>
+                <h4>ارتباط با ما</h4>
+                <a href="contact.html">تلگرام پشتیبانی</a>
+                <a href="contact.html">اینستاگرام</a>
+                <a href="contact.html">ایمیل</a>
+            </div>
+        </div>
+        <p class="copy">© تمام حقوق برای شاپور محفوظ است.</p>
+    </footer>
+
+    <!-- نوار پایین صفحه (فقط روی موبایل دیده می‌شه) -->
+    <nav class="bottom-bar">
+        <a href="index.html"><span>🏠</span>خانه</a>
+        <a href="#cp"><span>🗂️</span>محصولات</a>
+        <a href="cart.html"><span>🛒</span>سبد</a>
+        <a href="#"><span>📦</span>سفارش‌ها</a>
+        <a href="auth.html"><span>👤</span>حساب</a>
+    </nav>
+
+    <!-- ===== دکمه و پنجره‌ی پشتیبانی (شناور) ===== -->
+    <div class="support" id="support">
+        <div class="support-box" id="support-box">
+            <div class="support-head">
+                <div>
+                    <b>پشتیبانی شاپور</b>
+                    <span class="online">● آنلاین</span>
+                </div>
+                <button class="support-close" id="support-close" aria-label="بستن">✕</button>
+            </div>
+            <div class="support-body">
+                <div class="support-msg">سلام! 👋 چطور می‌تونم کمکت کنم؟ سفارش‌ها معمولاً زیر ۲۰ دقیقه تحویل می‌شن.</div>
+                <a href="#" class="support-link">💬 چت در تلگرام</a>
+                <a href="index.html#faq" class="support-link">❓ سوالات متداول</a>
+                <a href="contact.html" class="support-link">📞 راه‌های ارتباطی</a>
+            </div>
+            <div class="support-foot">
+                <input type="text" placeholder="پیامت رو بنویس..." id="support-input">
+                <button id="support-send" aria-label="ارسال">↩</button>
+            </div>
+        </div>
+        <button class="support-btn" id="support-btn" aria-label="پشتیبانی"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="3.5" height="5.5" rx="1.4"/><rect x="18" y="13" width="3.5" height="5.5" rx="1.4"/><path d="M20 18.5v.5a3 3 0 0 1-3 3h-3"/><circle cx="12" cy="9.2" r="2.6"/><path d="M7.5 16.5a4.7 4.7 0 0 1 9 0"/></svg></button>
+    </div>
+
+    <script src="product.js"></script>
+    <script src="support.js"></script>
+</body>
+</html>

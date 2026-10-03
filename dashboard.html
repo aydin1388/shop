@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل کاربری | شاپور</title>
+
+
+    <!-- فایل استایل (ظاهر سایت) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- هدر: بخش بالای صفحه -->
+    <header>
+        <!-- لوگو و شعار -->
+        <div class="brand">
+            <a href="index.html" class="logo-link"><h1 class="logo">شاپور</h1></a>
+            <p class="slogan">سلاح پادشاهان، برای میدان نبرد</p>
+        </div>
+
+        <!-- منو -->
+        <nav>
+            <a href="index.html">خانه</a>
+            <a href="#cp">محصولات</a>
+            <a href="#offers">آفرها</a>
+            <a href="contact.html">ارتباط با ما</a>
+        </nav>
+
+        <!-- حساب کاربری و سبد خرید -->
+        <div class="actions">
+            <a href="auth.html" class="btn btn-sm">ورود | ثبت‌نام</a>
+            <a href="cart.html" class="cart-btn" title="سبد خرید">
+                🛒<span class="cart-count">۰</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="products page-wide">
+        <a href="index.html" class="back-link top">← برگشت به فروشگاه</a>
+        <h2 class="section-title">پنل <span>کاربری</span></h2>
+
+        <div class="dash-top">
+            <div class="dash-card"><span class="small">خوش اومدی</span><b>آیدین رئیسی</b></div>
+            <div class="dash-card"><span class="small">کیف پول</span><b>۰ تومان</b></div>
+            <div class="dash-card"><span class="small">تعداد سفارش‌ها</span><b>۰</b></div>
+        </div>
+
+        <div class="dash-tabs">
+            <button class="dash-tab active" data-tab="orders">سفارش‌های من</button>
+            <button class="dash-tab" data-tab="wallet">کیف پول</button>
+            <button class="dash-tab" data-tab="profile">پروفایل</button>
+        </div>
+
+        <div class="dash-panel active" id="tab-orders">
+            <div class="orders">
+                <div class="order head"><span>محصول</span><span>زمان</span><span>وضعیت</span></div>
+                <div class="order"><span>—</span><span class="small">—</span><span class="state done">در انتظار داده‌ی واقعی</span></div>
+            </div>
+            <p class="note">* بعد از راه‌اندازی سرور، سفارش‌های واقعی این‌جا میان.</p>
+        </div>
+
+        <div class="dash-panel" id="tab-wallet">
+            <div class="doc">
+                <p>موجودی کیف پول: <b>۰ تومان</b></p>
+                <button class="btn">افزایش موجودی</button>
+                <p class="note">* نمایشی — پرداخت با سرور فعال می‌شه.</p>
+            </div>
+        </div>
+
+        <div class="dash-panel" id="tab-profile">
+            <form class="contact-form" onsubmit="return false" style="margin:0;max-width:none;">
+                <label class="field"><span>نام و نام خانوادگی</span><input type="text" value="آیدین رئیسی"></label>
+                <label class="field"><span>شماره موبایل</span><input type="tel" placeholder="۰۹۱۲۰۰۰۰۰۰۰"></label>
+                <button class="btn">ذخیره</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== فوتر ===== -->
+    <footer id="contact">
+        <div class="foot-grid">
+            <div>
+                <h3 class="logo foot-logo">شاپور</h3>
+                <p class="small">شاپ گیمرهای ایرانی؛ خرید CP و آفرهای کالاف دیوتی موبایل با تحویل سریع.</p>
+            </div>
+            <div>
+                <h4>دسترسی سریع</h4>
+                <a href="index.html#cp">بسته‌های CP</a>
+                <a href="index.html#offers">آفرهای ویژه</a>
+                <a href="terms.html">قوانین و مقررات</a>
+                <a href="index.html#faq">سوالات متداول</a>
+            </div>
+            <div>
+                <h4>ارتباط با ما</h4>
+                <a href="contact.html">تلگرام پشتیبانی</a>
+                <a href="contact.html">اینستاگرام</a>
+                <a href="contact.html">ایمیل</a>
+            </div>
+        </div>
+        <p class="copy">© تمام حقوق برای شاپور محفوظ است.</p>
+    </footer>
+
+    <!-- نوار پایین صفحه (فقط روی موبایل دیده می‌شه) -->
+    <nav class="bottom-bar">
+        <a href="index.html"><span>🏠</span>خانه</a>
+        <a href="#cp"><span>🗂️</span>محصولات</a>
+        <a href="cart.html"><span>🛒</span>سبد</a>
+        <a href="#"><span>📦</span>سفارش‌ها</a>
+        <a href="auth.html"><span>👤</span>حساب</a>
+    </nav>
+
+    <!-- ===== دکمه و پنجره‌ی پشتیبانی (شناور) ===== -->
+    <div class="support" id="support">
+        <div class="support-box" id="support-box">
+            <div class="support-head">
+                <div>
+                    <b>پشتیبانی شاپور</b>
+                    <span class="online">● آنلاین</span>
+                </div>
+                <button class="support-close" id="support-close" aria-label="بستن">✕</button>
+            </div>
+            <div class="support-body">
+                <div class="support-msg">سلام! 👋 چطور می‌تونم کمکت کنم؟ سفارش‌ها معمولاً زیر ۲۰ دقیقه تحویل می‌شن.</div>
+                <a href="#" class="support-link">💬 چت در تلگرام</a>
+                <a href="index.html#faq" class="support-link">❓ سوالات متداول</a>
+                <a href="contact.html" class="support-link">📞 راه‌های ارتباطی</a>
+            </div>
+            <div class="support-foot">
+                <input type="text" placeholder="پیامت رو بنویس..." id="support-input">
+                <button id="support-send" aria-label="ارسال">↩</button>
+            </div>
+        </div>
+        <button class="support-btn" id="support-btn" aria-label="پشتیبانی"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="3.5" height="5.5" rx="1.4"/><rect x="18" y="13" width="3.5" height="5.5" rx="1.4"/><path d="M20 18.5v.5a3 3 0 0 1-3 3h-3"/><circle cx="12" cy="9.2" r="2.6"/><path d="M7.5 16.5a4.7 4.7 0 0 1 9 0"/></svg></button>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script src="support.js"></script>
+</body>
+</html>
