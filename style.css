@@ -3096,19 +3096,7 @@ footer {
     .to-top { right: 14px; bottom: calc(96px + env(safe-area-inset-bottom)); width: 42px; height: 42px; }
 }
 
-/* ----- نور دنبال‌کننده‌ی موس روی کارت‌ها ----- */
 .card, .feature, .stat { position: relative; }
-.card::after, .feature::after, .stat::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(150, 165, 255, 0.17), transparent 70%);
-}
-.card:hover::after, .feature:hover::after, .stat:hover::after { opacity: 1; }
 
 /* ----- عکس کارت: موقع هاور آروم نزدیک می‌شه ----- */
 .card[style*=".svg"] .card-img {
@@ -3229,84 +3217,21 @@ footer .foot-grid {
 
 
 /* ================================================================
-   ✦ مدرن‌تر کردن سایت: انیمیشن‌های سبک ✦
-   همه‌ی حرکت‌ها فقط با transform و opacity ساخته شدن (کارت گرافیک لازم نیست)
-   و اگه «کاهش حرکت» روشن باشه اصلاً اجرا نمی‌شن.
-   برای برگشت: از همین کامنت تا آخر فایل رو پاک کن.
+   ✦ ریزه‌ی ظاهری: خط کوچیک زیر تیتر بخش‌ها ✦
+   (انیمیشن‌های ظاهر شدن، ripple، دکمه‌ی مغناطیسی، سکه‌ی شناور و محو شدن
+    صفحه برای سبک شدن سایت حذف شدن)
    ================================================================ */
-@media (prefers-reduced-motion: no-preference) {
-
-    /* ----- ظاهر شدن موقع اسکرول (کلاس rv رو جاوااسکریپت می‌ذاره و بعد برمی‌داره) ----- */
-    .modern .rv {
-        opacity: 0;
-        transform: translate3d(0, 26px, 0) scale(0.985);
-        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .modern .rv.in { opacity: 1; transform: none; }
-
-    /* ----- ورود هیرو موقع باز شدن صفحه ----- */
-    .hero-content > * { animation: heroUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
-    .hero-content > :nth-child(1) { animation-delay: 0.05s; }
-    .hero-content > :nth-child(2) { animation-delay: 0.15s; }
-    .hero-content > :nth-child(3) { animation-delay: 0.25s; }
-    .hero-content > :nth-child(4) { animation-delay: 0.35s; }
-    .hero-content > :nth-child(5) { animation-delay: 0.42s; }
-    @keyframes heroUp { from { opacity: 0; translate: 0 28px; } to { opacity: 1; translate: 0 0; } }
-
-    /* ----- سکه‌ها آروم شناورن (rotate و scale جدا از transform) ----- */
-    .banner-subject, .auth-subject { animation: coinFloat 7s ease-in-out infinite; }
-    @keyframes coinFloat {
-        0%, 100% { rotate: -1.8deg; scale: 1; }
-        50% { rotate: 1.8deg; scale: 1.035; }
-    }
-    .hero-subject { transition: translate 0.35s ease-out; }
-
-    /* ----- صفحه آروم باز می‌شه و موقع رفتن آروم کم‌رنگ ----- */
-    body { animation: pageIn 0.5s ease-out both; }
-    @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
-    body.leaving > *:not(.scroll-progress):not(.support):not(.toast):not(.to-top) {
-        opacity: 0.25;
-        transition: opacity 0.55s ease;
-    }
-
-    /* ----- دکمه‌ها: حرکت مغناطیسی نرم + ripple ----- */
-    .btn, .btn-sm, .cart-btn { transition-property: transform, box-shadow, background, border-color, color, translate; }
-    .btn, .btn-sm { position: relative; overflow: hidden; }
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 70%);
-        transform: scale(0);
-        opacity: 0.9;
-        pointer-events: none;
-        animation: ripple 0.65s ease-out forwards;
-    }
-    @keyframes ripple { to { transform: scale(1); opacity: 0; } }
-
-    /* ----- تیتر بخش‌ها: خط زیر تیتر موقع دیده شدن کشیده می‌شه ----- */
-    .section-title { position: relative; }
-    .section-title::after {
-        content: "";
-        display: block;
-        width: 56px;
-        height: 3px;
-        margin: 12px auto 0;
-        border-radius: 3px;
-        background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
-        transform-origin: center;
-    }
-    .modern .section-title.rv::after { transform: scaleX(0); }
-    .section-title::after { transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s; }
-    .page-banner .section-title::after, .page-narrow .section-title::after { margin-inline: 0 auto; }
+.section-title { position: relative; }
+.section-title::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 3px;
+    margin: 12px auto 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
 }
-
-/* ----- هدر: موقع اسکرول جمع‌وجور می‌شه ----- */
-header { transition: padding 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease; }
-.logo, .slogan { transition: font-size 0.35s ease, opacity 0.3s ease, max-height 0.35s ease, margin 0.35s ease; }
-.slogan { max-height: 24px; overflow: hidden; }
-.scrolled header { padding-top: 10px; padding-bottom: 10px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(88, 104, 255, 0.28); }
-.scrolled .logo { font-size: 36px; }
-.scrolled .slogan { opacity: 0; max-height: 0; }
+.page-banner .section-title::after, .page-narrow .section-title::after { margin-inline: 0 auto; }
 
 /* ----- نوار متحرک مزیت‌ها (ticker) ----- */
 .ticker {
@@ -3395,7 +3320,7 @@ body::after { display: none; }
 }
 .hero-img {
     position: absolute;
-    left: 0; right: 0; top: -12%; bottom: -4%;     /* جا برای پارالکس */
+    left: 0; right: 0; top: 0; bottom: 0;
     background-image:
         url('images/hero-bg.jpg'),
         radial-gradient(900px 520px at 78% 20%, rgba(88, 104, 255, 0.55), transparent 70%),
@@ -3404,7 +3329,6 @@ body::after { display: none; }
     background-size: cover, auto, auto, auto;
     background-position: center 40%;
     background-repeat: no-repeat;
-    will-change: transform;
 }
 .hero-shade {
     position: absolute;
@@ -3425,47 +3349,12 @@ body::after { display: none; }
 }
 .hero-photo + .wave-divider { display: none; }
 
-.scroll-cue {
-    position: absolute;
-    left: 50%;
-    bottom: 22px;
-    width: 22px;
-    height: 36px;
-    margin-left: -11px;
-    border: 2px solid rgba(255, 255, 255, 0.55);
-    border-radius: 14px;
-}
-.scroll-cue::after {
-    content: "";
-    position: absolute;
-    left: 50%; top: 7px;
-    width: 4px; height: 7px;
-    margin-left: -2px;
-    border-radius: 3px;
-    background: #fff;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    /* (زوم آروم عکس برداشته شد: روی لپ‌تاپ ضعیف سایت رو لگ می‌کرد) */
-    .hero-cta .btn { animation: heroUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards; }
-    .hero-cta .btn + .btn { animation-delay: 0.42s; }
-    .scroll-cue::after { animation: cueDrop 1.6s ease-in-out 3; }
-    @keyframes cueDrop {
-        0%   { translate: 0 0; opacity: 1; }
-        70%  { translate: 0 12px; opacity: 0; }
-        100% { translate: 0 0; opacity: 0; }
-    }
-}
 
 @media (max-width: 800px) {
     .hero.hero-photo { height: 62vh; min-height: 360px; }
     .hero-cta { bottom: 56px; }
 }
 
-/* حلقه‌ی پیشرفت اسکرول دور دکمه‌ی «برگشت به بالا» */
-.to-top { position: fixed; }
-.to-top .ring { position: absolute; inset: -3px; width: calc(100% + 6px); height: calc(100% + 6px); transform: rotate(-90deg); pointer-events: none; }
-.to-top .ring circle { fill: none; stroke: rgba(158, 158, 255, 0.9); stroke-width: 2.4; stroke-linecap: round; }
 
 
 /* ================================================================
@@ -3474,7 +3363,6 @@ body::after { display: none; }
    - بنر تقریباً کل صفحه‌ی اول رو می‌گیره: ارتفاع صفحه منهای هدر (۱۳۱px روی دسکتاپ، ۸۰px روی موبایل)
    - 100svh یعنی ارتفاع واقعی صفحه روی موبایل (بدون نوار آدرس)
    ================================================================ */
-.scroll-cue { display: none; }
 .hero.hero-photo {
     height: calc(100vh - 131px);
     height: calc(100svh - 131px);
@@ -3499,8 +3387,6 @@ body::after { display: none; }
    - ظاهر شدن بخش‌ها موقع اسکرول، پارالکس، دکمه‌ی مغناطیسی، ripple (توی ui.js)
    - سایه‌ی سنگین زیر کارت‌ها (خط روشن لبه‌ی شیشه می‌مونه)
    ================================================================ */
-.lite body { animation: none !important; }
-.lite .hero-cta .btn { animation: none !important; }
 .lite .card, .lite .cat-card, .lite .feature, .lite .stat, .lite .review,
 .lite .post, .lite .partner, .lite .faq-item, .lite .deal {
     box-shadow: var(--glass-edge) !important;
@@ -3509,3 +3395,36 @@ body::after { display: none; }
 .lite .review:hover, .lite .post:hover, .lite .partner:hover, .lite .faq-item:hover {
     box-shadow: var(--glass-edge), 0 8px 18px rgba(0, 0, 0, 0.30) !important;
 }
+
+
+/* ================================================================
+   ✦ حالت سبک، مرحله‌ی دوم ✦
+   - درخشش پس‌زمینه دیگه یه لایه‌ی تمام‌صفحه‌ی ثابت نیست؛ همراه خود صفحه
+     اسکرول می‌شه (کارت گرافیک ضعیف هر فریم مجبور نیست یه لایه‌ی کامل رو دوباره ترکیب کنه)
+   - محو شدن دو طرف نوار متحرک با لایه‌ی ساده انجام می‌شه، نه mask
+   ================================================================ */
+.lite body::before { display: none; }
+.lite body {
+    background-image:
+        radial-gradient(620px 420px at 88% 80px, rgba(57, 79, 240, 0.40), transparent 70%),
+        radial-gradient(520px 520px at 2% 520px, rgba(139, 70, 255, 0.22), transparent 70%);
+    background-repeat: no-repeat;
+}
+.lite .ticker {
+    position: relative;
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+.lite .ticker::before, .lite .ticker::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 12%;
+    z-index: 2;
+    pointer-events: none;
+}
+.lite .ticker::before { left: 0;  background: linear-gradient(90deg,  #070916, rgba(7, 9, 22, 0)); }
+.lite .ticker::after  { right: 0; background: linear-gradient(270deg, #070916, rgba(7, 9, 22, 0)); }
+
+/* هدر تقریباً مات: بدون تاری پشتش، محتوای زیرش (مثل نوار متحرک) از لای متن‌ها دیده می‌شد */
+header { background: rgba(8, 10, 24, 0.985); }
