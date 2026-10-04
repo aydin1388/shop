@@ -3640,3 +3640,9 @@ html { scroll-padding-top: 96px; }
 .contact-page .section-title, .contact-page .section-sub { text-align: center; }
 .contact-page .section-title::after { margin-inline: auto; }
 .contact-page .section-sub { max-width: 620px; margin-inline: auto; }
+
+/* «پاسخ‌گویی ۲۴ ساعته» لینکه و چت پشتیبانی رو باز می‌کنه */
+a.contact-note { text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s; }
+a.contact-note:hover { transform: translateY(-4px); border-color: var(--accent); }
+a.contact-note .n-link { display: inline-block; margin-top: 4px; }
+a.contact-note:hover .n-link { color: #fff; }
