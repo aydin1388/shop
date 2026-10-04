@@ -7,6 +7,11 @@
 // همه‌ی کارها سبکن (فقط روی یه المان کار می‌کنن).
 // ================================================
 (function () {
+    // دستگاه ضعیف (۴ هسته یا کمتر / ۴ گیگ رم یا کمتر): حرکت‌های اضافه خاموش می‌شن، ظاهر سایت همون می‌مونه
+    var weak = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+               (navigator.deviceMemory && navigator.deviceMemory <= 4);
+    if (weak) document.documentElement.classList.add('lite');
+
     var bar = document.createElement('div');
     bar.className = 'scroll-progress';
     document.body.appendChild(bar);
@@ -111,7 +116,7 @@
     }
 
     // ----- نور دنبال‌کننده‌ی موس روی کارت‌ها (فقط وقتی موس واقعی هست) -----
-    if (window.matchMedia && window.matchMedia('(pointer: fine)').matches &&
+    if (!weak && window.matchMedia && window.matchMedia('(pointer: fine)').matches &&
         !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         var raf = 0, px = 0, py = 0, cur = null;
         document.addEventListener('pointermove', function (e) {
@@ -178,7 +183,7 @@
         }).observe(tick);
     }
 
-    if (reduce) return;
+    if (reduce || root.classList.contains('lite')) return;   // دستگاه ضعیف: بدون ظاهر شدن موقع اسکرول، پارالکس، دکمه‌ی مغناطیسی و ripple
     root.classList.add('modern');
 
     // ----- ظاهر شدن موقع اسکرول -----

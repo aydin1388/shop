@@ -3488,3 +3488,24 @@ body::after { display: none; }
     .hero-cta { bottom: 64px; }
     .hero-cta .btn { padding: 14px 28px; font-size: 16px; }
 }
+
+
+/* ================================================================
+   ✦ حالت سبک برای لپ‌تاپ‌ها و گوشی‌های ضعیف (کلاس lite) ✦
+   ui.js خودش تشخیص می‌ده دستگاه ضعیفه (۴ هسته یا کمتر / ۴ گیگ رم یا کمتر)
+   و کلاس lite رو به صفحه می‌ده. ظاهر سایت همون می‌مونه؛ فقط چیزهایی
+   خاموش می‌شن که فقط حرکتِ اضافه‌ن:
+   - محو شدن کل صفحه موقع باز شدن
+   - ظاهر شدن بخش‌ها موقع اسکرول، پارالکس، دکمه‌ی مغناطیسی، ripple (توی ui.js)
+   - سایه‌ی سنگین زیر کارت‌ها (خط روشن لبه‌ی شیشه می‌مونه)
+   ================================================================ */
+.lite body { animation: none !important; }
+.lite .hero-cta .btn { animation: none !important; }
+.lite .card, .lite .cat-card, .lite .feature, .lite .stat, .lite .review,
+.lite .post, .lite .partner, .lite .faq-item, .lite .deal {
+    box-shadow: var(--glass-edge) !important;
+}
+.lite .card:hover, .lite .cat-card:hover, .lite .feature:hover, .lite .stat:hover,
+.lite .review:hover, .lite .post:hover, .lite .partner:hover, .lite .faq-item:hover {
+    box-shadow: var(--glass-edge), 0 8px 18px rgba(0, 0, 0, 0.30) !important;
+}
