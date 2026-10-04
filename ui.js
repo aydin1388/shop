@@ -27,6 +27,7 @@
     document.body.appendChild(top);
 
     var navigating = false;
+    var small = false;
     var ticking = false;
 
     // ارتفاع صفحه رو هر ۴۰۰ میلی‌ثانیه یه بار می‌خونیم (خوندنش هر فریم بی‌خودی سنگینه)
@@ -43,6 +44,10 @@
         ticking = false;
         var y = window.scrollY;
         // (پر و خالی شدن خط موقع اسکرول برداشته شد؛ خط فقط موقع رفتن به صفحه‌ی دیگه دیده می‌شه)
+        // هدر: پایین‌تر از ۱۲۰ پیکسل کوچیک می‌شه، بالاتر از ۳۰ دوباره بزرگ (فقط یه بار موقع عبور از مرز،
+        // نه هر فریم؛ دو مرز مختلف هم برای اینه که کنار مرز مدام عوض نشه)
+        if (!small && y > 120) { small = true; root.classList.add('hs'); }
+        else if (small && y < 30) { small = false; root.classList.remove('hs'); }
         top.classList.toggle('show', y > 700);
     }
     window.addEventListener('scroll', function () {

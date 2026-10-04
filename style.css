@@ -3458,12 +3458,20 @@ footer a:hover { transform: translateX(-6px); }
 .feature .f-icon { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .feature:hover .f-icon { transform: scale(1.14) rotate(-6deg); }
 
-/* لوگو: موقع hover کمی بزرگ می‌شه */
+/* لوگو: موقع hover کمی بزرگ و کج می‌شه */
 .logo { transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.logo:hover { transform: scale(1.06); }
+.logo:hover { transform: scale(1.08) rotate(-3deg); }
 
 /* فشردن کارت‌ها و دکمه‌ها: حس کلیک واقعی */
 .card:active, .cat-card:active, .deal:active { transform: scale(0.985); }
 
 /* فقط عنوان‌های بخش‌ها (مثل «خرید سی پی کالاف دیوتی موبایل») بی‌حرکتن؛ بقیه‌ی افکت‌ها مثل قبل */
 .section-title, .section-title:hover { transform: none !important; }
+
+/* ----- هدر کوچک موقع اسکرول (کلاس hs رو ui.js می‌ذاره) -----
+   عمداً بدون transition روی اندازه: انیمیشن اندازه‌ی هدر کل صفحه رو هر فریم دوباره می‌چید و لگ می‌شد. */
+@media (min-width: 701px) {
+    .hs header { padding: 9px 44px; }
+    .hs .logo { font-size: 30px; line-height: 1.2; padding-bottom: 2px; }
+    .hs .slogan { display: none; }
+}
