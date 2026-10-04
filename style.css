@@ -3646,3 +3646,20 @@ a.contact-note { text-decoration: none; color: inherit; cursor: pointer; transit
 a.contact-note:hover { transform: translateY(-4px); border-color: var(--accent); }
 a.contact-note .n-link { display: inline-block; margin-top: 4px; }
 a.contact-note:hover .n-link { color: #fff; }
+
+/* ----- نور رنگی موقع بالا اومدن (هر چیزی که hover بالا می‌آد، نور آبی هم می‌ده) -----
+   فقط روی همون یک کارتی که موس روشه کار می‌کنه، پس سنگین نیست. */
+.card, .cat-card, .feature, .step, .review, .top, .post, .partner, .stat, .faq-item,
+.contact-card, .contact-note, .deal, .chip {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s, box-shadow 0.25s;
+}
+.card:hover, .cat-card:hover, .feature:hover, .step:hover, .review:hover, .top:hover,
+.post:hover, .partner:hover, .stat:hover, .faq-item:hover, .contact-note:hover, .deal:hover {
+    box-shadow: var(--glass-edge), 0 16px 32px -14px rgba(88, 104, 255, 0.75);
+}
+.contact-page .contact-card:hover { box-shadow: var(--glass-edge), 0 16px 32px -12px var(--c2); }
+/* روی لپ‌تاپ‌های ضعیف (حالت lite) هم نور hover باشه تا همه‌جا یکدست بمونه؛ فقط روی همون یک کارته */
+.lite .card:hover, .lite .cat-card:hover, .lite .feature:hover, .lite .stat:hover,
+.lite .review:hover, .lite .post:hover, .lite .partner:hover, .lite .faq-item:hover, .lite .deal:hover {
+    box-shadow: var(--glass-edge), 0 16px 32px -14px rgba(88, 104, 255, 0.75) !important;
+}
