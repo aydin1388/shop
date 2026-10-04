@@ -92,7 +92,7 @@
         '<button class="teaser-close" aria-label="بستن">✕</button>' +
         '<div class="teaser-av">' + AVATAR + '</div>' +
         '<div class="teaser-txt"><b>پشتیبانی شاپور</b>' +
-        '<span>سلام رفیق! 👋 وقتت بخیر، چطور می‌تونم کمکت کنم؟</span></div>';
+        '<span>سلام رفیق! <i class="ic i-hand"></i> وقتت بخیر، چطور می‌تونم کمکت کنم؟</span></div>';
     // بالای دکمه (قبل از دکمه) قرار می‌گیره
     wrap.insertBefore(teaser, btn);
 

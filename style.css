@@ -3209,7 +3209,7 @@ footer .foot-grid {
     white-space: nowrap;
     pointer-events: none;
 }
-.card-img .img-label::before { content: "👑 "; font-size: 11px; }
+.card-img .img-label::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-inline-end: 4px; vertical-align: -2px; background: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; --m: var(--m-crown); }
 
 
 /* ================================================================
@@ -3468,10 +3468,175 @@ footer a:hover { transform: translateX(-6px); }
 /* فقط عنوان‌های بخش‌ها (مثل «خرید سی پی کالاف دیوتی موبایل») بی‌حرکتن؛ بقیه‌ی افکت‌ها مثل قبل */
 .section-title, .section-title:hover { transform: none !important; }
 
-/* ----- هدر کوچک موقع اسکرول (کلاس hs رو ui.js می‌ذاره) -----
-   عمداً بدون transition روی اندازه: انیمیشن اندازه‌ی هدر کل صفحه رو هر فریم دوباره می‌چید و لگ می‌شد. */
+/* ----- هدر کوچک‌شونده موقع اسکرول (کلاس hs رو ui.js می‌ذاره) -----
+   هدر روی دسکتاپ fixed شده و به‌جاش body به اندازه‌ی هدر بزرگ فاصله داره؛ پس کوچیک و بزرگ شدن هدر
+   هیچ‌چیزِ بقیه‌ی صفحه رو جابه‌جا نمی‌کنه (قبلاً همین جابه‌جایی باعث پرش و لگ می‌شد). */
+html { scroll-padding-top: 96px; }
 @media (min-width: 701px) {
-    .hs header { padding: 9px 44px; }
-    .hs .logo { font-size: 30px; line-height: 1.2; padding-bottom: 2px; }
-    .hs .slogan { display: none; }
+    body { padding-top: 131px; }
+    header {
+        position: fixed;
+        top: 0; right: 0; left: 0;
+        transition: padding 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    header .logo { transition: font-size 0.28s cubic-bezier(0.22, 1, 0.36, 1), transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    header .slogan { max-height: 30px; overflow: hidden; transition: opacity 0.2s, max-height 0.28s cubic-bezier(0.22, 1, 0.36, 1), margin 0.28s; }
+    .hs header { padding-top: 9px; padding-bottom: 9px; }
+    .hs header .logo { font-size: 30px; }
+    .hs header .slogan { opacity: 0; max-height: 0; margin-top: 0; }
 }
+
+/* ================================================================
+   ✦ آیکن‌های سبک (جای ایموجی‌ها) ✦
+   هر آیکن یه SVG کوچیکه که با رنگ متن اطرافش رنگ می‌شه (currentColor).
+   استفاده: <i class="ic i-bolt"></i>   اسم‌ها: cart bolt crown lock headset shield gem
+   gamepad rocket card flame trophy box video target medal home grid user hand chat help
+   phone camera mail
+   ================================================================ */
+:root { --m-clock:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%2210%22/%3E%3Cpath d=%22M12 6v6l4 2%22/%3E%3C/svg%3E");--m-cart:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%229%22 cy=%2221%22 r=%221%22/%3E%3Ccircle cx=%2220%22 cy=%2221%22 r=%221%22/%3E%3Cpath d=%22M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6%22/%3E%3C/svg%3E");--m-bolt:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M13 2 3 14h9l-1 8 10-12h-9l1-8z%22/%3E%3C/svg%3E");--m-crown:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22m2 8 4.5 4L12 4l5.5 8L22 8l-2 11H4z%22/%3E%3Cpath d=%22M4 22h16%22/%3E%3C/svg%3E");--m-lock:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%223%22 y=%2211%22 width=%2218%22 height=%2211%22 rx=%222%22/%3E%3Cpath d=%22M7 11V7a5 5 0 0 1 10 0v4%22/%3E%3C/svg%3E");--m-headset:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3 14v-2a9 9 0 0 1 18 0v2%22/%3E%3Cpath d=%22M21 15a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2zM3 15a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z%22/%3E%3Cpath d=%22M21 17v1a3 3 0 0 1-3 3h-4%22/%3E%3C/svg%3E");--m-shield:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z%22/%3E%3Cpath d=%22m9 12 2 2 4-4%22/%3E%3C/svg%3E");--m-gem:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 3h12l4 6-10 13L2 9z%22/%3E%3Cpath d=%22M2 9h20M12 22 8 9l4-6 4 6-4 13%22/%3E%3C/svg%3E");--m-gamepad:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 12h4M8 10v4%22/%3E%3Cpath d=%22M15 13h.01M18 11h.01%22/%3E%3Cpath d=%22M17.3 5H6.7a4 4 0 0 0-3.9 3.1l-1.6 7.5A3 3 0 0 0 4 19a3 3 0 0 0 2.1-.9L8 16h8l1.9 2.1A3 3 0 0 0 20 19a3 3 0 0 0 2.8-3.4l-1.6-7.5A4 4 0 0 0 17.3 5z%22/%3E%3C/svg%3E");--m-rocket:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z%22/%3E%3Cpath d=%22m12 15-3-3a22 22 0 0 1 2-4 12 12 0 0 1 11-6c0 3-1 8-6 11a22 22 0 0 1-4 2z%22/%3E%3Cpath d=%22M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5%22/%3E%3C/svg%3E");--m-card:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%222%22 y=%225%22 width=%2220%22 height=%2214%22 rx=%222%22/%3E%3Cpath d=%22M2 10h20%22/%3E%3C/svg%3E");--m-flame:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.4 1-3 0 1.4 1 2.5 2.5 2.5z%22/%3E%3C/svg%3E");--m-trophy:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.7V17c0 .6-.5 1-1.2 1.2C7.9 18.8 7 20.2 7 22M14 14.7V17c0 .6.5 1 1.2 1.2.9.6 1.8 2 1.8 3.8M18 2H6v7a6 6 0 0 0 12 0z%22/%3E%3C/svg%3E");--m-box:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M21 8 12 3 3 8v8l9 5 9-5z%22/%3E%3Cpath d=%22m3.3 7.5 8.7 5 8.7-5M12 22V12.5%22/%3E%3C/svg%3E");--m-video:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22m22 8-6 4 6 4V8z%22/%3E%3Crect x=%222%22 y=%226%22 width=%2214%22 height=%2212%22 rx=%222%22/%3E%3C/svg%3E");--m-target:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%2210%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%226%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222%22/%3E%3C/svg%3E");--m-medal:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2215%22 r=%226%22/%3E%3Cpath d=%22M8.2 3 12 9l3.8-6M8.5 9.5 7 3h3M15.5 9.5 17 3h-3%22/%3E%3C/svg%3E");--m-home:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22m3 10 9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z%22/%3E%3C/svg%3E");--m-grid:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%223%22 y=%223%22 width=%227%22 height=%227%22 rx=%221%22/%3E%3Crect x=%2214%22 y=%223%22 width=%227%22 height=%227%22 rx=%221%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%227%22 height=%227%22 rx=%221%22/%3E%3Crect x=%223%22 y=%2214%22 width=%227%22 height=%227%22 rx=%221%22/%3E%3C/svg%3E");--m-user:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%228%22 r=%224%22/%3E%3Cpath d=%22M4 21a8 8 0 0 1 16 0%22/%3E%3C/svg%3E");--m-hand:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8%22/%3E%3Cpath d=%22M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-5.9-2.4L3.4 16a2 2 0 0 1 3-2.7L8 15%22/%3E%3C/svg%3E");--m-chat:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z%22/%3E%3C/svg%3E");--m-help:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%2210%22/%3E%3Cpath d=%22M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01%22/%3E%3C/svg%3E");--m-phone:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z%22/%3E%3C/svg%3E");--m-camera:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z%22/%3E%3Ccircle cx=%2212%22 cy=%2213%22 r=%224%22/%3E%3C/svg%3E");--m-mail:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect x=%222%22 y=%224%22 width=%2220%22 height=%2216%22 rx=%222%22/%3E%3Cpath d=%22m22 7-10 6L2 7%22/%3E%3C/svg%3E"); }
+.ic {
+    display: inline-block;
+    width: 1.15em;
+    height: 1.15em;
+    vertical-align: -0.2em;
+    background: currentColor;
+    -webkit-mask: var(--m) center / contain no-repeat;
+    mask: var(--m) center / contain no-repeat;
+}
+.i-cart{--m:var(--m-cart)}
+.i-bolt{--m:var(--m-bolt)}
+.i-crown{--m:var(--m-crown)}
+.i-lock{--m:var(--m-lock)}
+.i-headset{--m:var(--m-headset)}
+.i-shield{--m:var(--m-shield)}
+.i-gem{--m:var(--m-gem)}
+.i-gamepad{--m:var(--m-gamepad)}
+.i-rocket{--m:var(--m-rocket)}
+.i-card{--m:var(--m-card)}
+.i-flame{--m:var(--m-flame)}
+.i-trophy{--m:var(--m-trophy)}
+.i-box{--m:var(--m-box)}
+.i-video{--m:var(--m-video)}
+.i-target{--m:var(--m-target)}
+.i-medal{--m:var(--m-medal)}
+.i-home{--m:var(--m-home)}
+.i-grid{--m:var(--m-grid)}
+.i-user{--m:var(--m-user)}
+.i-hand{--m:var(--m-hand)}
+.i-chat{--m:var(--m-chat)}
+.i-help{--m:var(--m-help)}
+.i-phone{--m:var(--m-phone)}
+.i-camera{--m:var(--m-camera)}
+.i-mail{--m:var(--m-mail)}
+
+.i-clock{--m:var(--m-clock)}
+
+/* ================================================================
+   ✦ صفحه‌ی ارتباط با ما ✦
+   ================================================================ */
+.page-narrow.contact-page { max-width: 1060px; }
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 22px;
+    align-items: start;
+    margin-top: 26px;
+}
+.contact-side { display: flex; flex-direction: column; gap: 14px; }
+.contact-page .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: none;
+    margin: 0;
+    gap: 14px;
+}
+.contact-page .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 16px;
+    text-align: start;
+    border-radius: 20px;
+}
+.contact-page .contact-card b { margin: 0 0 3px; font-size: 15px; }
+.contact-page .contact-card .small { display: block; direction: ltr; text-align: right; opacity: 0.8; }
+.contact-page .c-txt { min-width: 0; }
+.contact-page .c-ico {
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    font-size: 24px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    box-shadow: 0 8px 18px -6px var(--c2);
+}
+.c-blue   { --c1: #5b6bff; --c2: #394ff0; }
+.c-pink   { --c1: #ff6bb0; --c2: #c13584; }
+.c-cyan   { --c1: #38bdf8; --c2: #0e8bd6; }
+.c-violet { --c1: #a78bfa; --c2: #7c4dff; }
+.contact-page .contact-card:hover { border-color: var(--c2); box-shadow: 0 12px 28px -12px var(--c2); }
+
+.contact-note {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--glass-edge), 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+.contact-note b { display: block; color: #fff; margin-bottom: 3px; font-size: 14.5px; }
+.contact-note .small { display: block; line-height: 1.8; }
+.contact-note .n-ico {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    font-size: 20px;
+    color: var(--accent-light);
+    background: rgba(88, 104, 255, 0.16);
+    border: 1px solid rgba(158, 158, 255, 0.25);
+}
+.contact-note .n-link { color: var(--accent-light); text-decoration: none; font-size: 13px; }
+.contact-note .n-link:hover { color: #fff; }
+
+.contact-page .contact-form {
+    max-width: none;
+    margin: 0;
+    padding: 26px 24px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+}
+.contact-page .contact-form::before {
+    content: "";
+    position: absolute;
+    top: -90px; left: -90px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(88, 104, 255, 0.35), transparent 70%);
+    pointer-events: none;
+}
+.contact-page .contact-form h3 { font-size: 20px; margin-bottom: 4px; position: relative; }
+.contact-page .form-sub { margin: 0 0 18px; color: var(--muted, #9aa3b8); font-size: 13.5px; position: relative; }
+.contact-page .contact-form .field { position: relative; }
+.contact-page .contact-form .btn { padding: 14px; font-size: 16px; border-radius: 14px; margin-top: 10px; }
+
+@media (max-width: 860px) {
+    .contact-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+    .contact-page .contact-grid { grid-template-columns: 1fr; }
+}
+
+.cart-btn, .cart-btn .ic { color: #e8ecff; }
+.cart-btn .ic { width: 20px; height: 20px; vertical-align: 0; }
+.contact-page .back-link.top { display: inline-block; width: auto; }
+.contact-page .section-title, .contact-page .section-sub { text-align: center; }
+.contact-page .section-title::after { margin-inline: auto; }
+.contact-page .section-sub { max-width: 620px; margin-inline: auto; }

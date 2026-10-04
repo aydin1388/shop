@@ -62,6 +62,8 @@
         bar.style.transform = 'scaleX(0.5)';   // تا نصف می‌ره، بقیه‌اش توی صفحه‌ی جدید
         try { sessionStorage.setItem('shapur_nav', '1'); } catch (e) {}
         setTimeout(function () { window.location.href = url; }, 450);
+        // اگه به هر دلیلی صفحه عوض نشد (مثلاً لغو شد)، بعد از ۵ ثانیه نوار خودش خالی می‌شه
+        setTimeout(function () { if (document.visibilityState !== 'hidden') resetBar(); }, 5000);
     };
 
     document.addEventListener('click', function (e) {
@@ -81,12 +83,17 @@
     });
 
     // برگشتن با دکمه‌ی back مرورگر: حالت عادی
+    function resetBar() {
+        navigating = false;
+        bar.classList.remove('loading');
+        bar.style.transition = 'none';
+        bar.style.opacity = '';
+        bar.style.transform = 'scaleX(0)';
+        void bar.offsetWidth;
+        bar.style.transition = '';
+    }
     window.addEventListener('pageshow', function (e) {
-        if (e.persisted) {
-            navigating = false;
-            bar.classList.remove('loading');
-            update();
-        }
+        if (e.persisted) { resetBar(); update(); }
     });
 
     // صفحه‌ی جدید باز شد: خط از نصف شروع می‌شه، پر می‌شه و بعد محو می‌شه (ادامه‌ی همون لود)

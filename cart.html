@@ -7,7 +7,7 @@
 
 
     <!-- فایل استایل (ظاهر سایت) -->
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
         <div class="actions">
             <a href="auth.html" class="btn btn-sm">ورود | ثبت‌نام</a>
             <a href="cart.html" class="cart-btn" title="سبد خرید">
-                🛒<span class="cart-count">۰</span>
+                <i class="ic i-cart"></i><span class="cart-count">۰</span>
             </a>
         </div>
     </header>
@@ -107,11 +107,11 @@
 
     <!-- نوار پایین صفحه (فقط روی موبایل دیده می‌شه) -->
     <nav class="bottom-bar">
-        <a href="index.html"><span>🏠</span>خانه</a>
-        <a href="#cp"><span>🗂️</span>محصولات</a>
-        <a href="cart.html"><span>🛒</span>سبد</a>
-        <a href="#"><span>📦</span>سفارش‌ها</a>
-        <a href="auth.html"><span>👤</span>حساب</a>
+        <a href="index.html"><span><i class="ic i-home"></i></span>خانه</a>
+        <a href="#cp"><span><i class="ic i-grid"></i></span>محصولات</a>
+        <a href="cart.html"><span><i class="ic i-cart"></i></span>سبد</a>
+        <a href="#"><span><i class="ic i-box"></i></span>سفارش‌ها</a>
+        <a href="auth.html"><span><i class="ic i-user"></i></span>حساب</a>
     </nav>
 
     <!-- ===== دکمه و پنجره‌ی پشتیبانی (شناور) ===== -->
@@ -125,10 +125,10 @@
                 <button class="support-close" id="support-close" aria-label="بستن">✕</button>
             </div>
             <div class="support-body">
-                <div class="support-msg">سلام! 👋 چطور می‌تونم کمکت کنم؟ سفارش‌ها معمولاً زیر ۲۰ دقیقه تحویل می‌شن.</div>
-                <a href="#" class="support-link">💬 چت در تلگرام</a>
-                <a href="index.html#faq" class="support-link">❓ سوالات متداول</a>
-                <a href="contact.html" class="support-link">📞 راه‌های ارتباطی</a>
+                <div class="support-msg">سلام! <i class="ic i-hand"></i> چطور می‌تونم کمکت کنم؟ سفارش‌ها معمولاً زیر ۲۰ دقیقه تحویل می‌شن.</div>
+                <a href="#" class="support-link"><i class="ic i-chat"></i> چت در تلگرام</a>
+                <a href="index.html#faq" class="support-link"><i class="ic i-help"></i> سوالات متداول</a>
+                <a href="contact.html" class="support-link"><i class="ic i-phone"></i> راه‌های ارتباطی</a>
             </div>
             <div class="support-foot">
                 <input type="text" placeholder="پیامت رو بنویس..." id="support-input">
@@ -139,7 +139,7 @@
     </div>
 
     <script src="cart.js"></script>
-    <script src="ui.js?v=10"></script>
+    <script src="ui.js?v=11"></script>
     <script src="support.js"></script>
 </body>
 </html>

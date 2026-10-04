@@ -7,7 +7,7 @@
 
 
     <!-- فایل استایل (ظاهر سایت) -->
-    <link rel="stylesheet" href="style.css?v=14">
+    <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
@@ -31,31 +31,44 @@
         <div class="actions">
             <a href="auth.html" class="btn btn-sm">ورود | ثبت‌نام</a>
             <a href="cart.html" class="cart-btn" title="سبد خرید">
-                🛒<span class="cart-count">۰</span>
+                <i class="ic i-cart"></i><span class="cart-count">۰</span>
             </a>
         </div>
     </header>
 
-    <section class="products page-narrow">
+    <section class="products page-narrow contact-page">
         <a href="index.html" class="back-link top">← برگشت به فروشگاه</a>
         <h2 class="section-title">ارتباط <span>با ما</span></h2>
         <p class="section-sub">هر سوال یا مشکلی داشتی، از این راه‌ها در دسترسیم. پشتیبانی ۲۴ ساعته تا زمان تحویل سفارش کنارته.</p>
 
-        <div class="contact-grid">
-            <a href="#" class="contact-card"><div class="c-ico">💬</div><b>تلگرام پشتیبانی</b><span class="small">@shapur_support</span></a>
-            <a href="#" class="contact-card"><div class="c-ico">📸</div><b>اینستاگرام</b><span class="small">@shapur.shop</span></a>
-            <a href="#" class="contact-card"><div class="c-ico">✉️</div><b>ایمیل</b><span class="small">info@shapur.shop</span></a>
-            <a href="#" class="contact-card"><div class="c-ico">📞</div><b>تلفن</b><span class="small">۰۹۱۲۰۰۰۰۰۰۰</span></a>
-        </div>
+        <div class="contact-layout">
+            <div class="contact-side">
+                <div class="contact-grid">
+                    <a href="#" class="contact-card c-blue"><div class="c-ico"><i class="ic i-chat"></i></div><div class="c-txt"><b>تلگرام پشتیبانی</b><span class="small">@shapur_support</span></div></a>
+                    <a href="#" class="contact-card c-pink"><div class="c-ico"><i class="ic i-camera"></i></div><div class="c-txt"><b>اینستاگرام</b><span class="small">@shapur.shop</span></div></a>
+                    <a href="#" class="contact-card c-cyan"><div class="c-ico"><i class="ic i-mail"></i></div><div class="c-txt"><b>ایمیل</b><span class="small">info@shapur.shop</span></div></a>
+                    <a href="#" class="contact-card c-violet"><div class="c-ico"><i class="ic i-phone"></i></div><div class="c-txt"><b>تلفن</b><span class="small">۰۹۱۲۰۰۰۰۰۰۰</span></div></a>
+                </div>
+                <div class="contact-note">
+                    <div class="n-ico"><i class="ic i-clock"></i></div>
+                    <div><b>پاسخ‌گویی ۲۴ ساعته</b><span class="small">معمولاً کمتر از ۵ دقیقه جواب می‌گیری؛ سفارش‌ها زیر ۲۰ دقیقه تحویل می‌شن.</span></div>
+                </div>
+                <div class="contact-note">
+                    <div class="n-ico"><i class="ic i-help"></i></div>
+                    <div><b>جواب سوالت رو شاید همین‌جا پیدا کنی</b><a href="index.html#faq" class="n-link">دیدن سوالات متداول ←</a></div>
+                </div>
+            </div>
 
-        <form class="contact-form" onsubmit="return false">
-            <h3>پیام مستقیم</h3>
-            <label class="field"><span>نام و نام خانوادگی</span><input type="text" placeholder="نام و نام خانوادگی"></label>
-            <label class="field"><span>شماره تماس</span><input type="tel" placeholder="۰۹۱۲۰۰۰۰۰۰۰" inputmode="numeric"></label>
-            <label class="field"><span>پیام</span><textarea rows="4" placeholder="پیامت رو بنویس..."></textarea></label>
-            <button class="btn" id="c-send">ارسال پیام</button>
-            <p class="cart-note" id="c-msg">این فرم نمونه‌ست؛ ارسال واقعی بعد از راه‌اندازی سرور فعال می‌شه.</p>
-        </form>
+            <form class="contact-form" onsubmit="return false">
+                <h3>پیام مستقیم</h3>
+                <p class="form-sub">پیامت رو بنویس، سریع جواب می‌دیم.</p>
+                <label class="field"><span>نام و نام خانوادگی</span><input type="text" placeholder="نام و نام خانوادگی"></label>
+                <label class="field"><span>شماره تماس</span><input type="tel" placeholder="۰۹۱۲۰۰۰۰۰۰۰" inputmode="numeric"></label>
+                <label class="field"><span>پیام</span><textarea rows="5" placeholder="پیامت رو بنویس..."></textarea></label>
+                <button class="btn" id="c-send">ارسال پیام</button>
+                <p class="cart-note" id="c-msg">این فرم نمونه‌ست؛ ارسال واقعی بعد از راه‌اندازی سرور فعال می‌شه.</p>
+            </form>
+        </div>
     </section>
 
     <!-- ===== فوتر ===== -->
@@ -84,11 +97,11 @@
 
     <!-- نوار پایین صفحه (فقط روی موبایل دیده می‌شه) -->
     <nav class="bottom-bar">
-        <a href="index.html"><span>🏠</span>خانه</a>
-        <a href="#cp"><span>🗂️</span>محصولات</a>
-        <a href="cart.html"><span>🛒</span>سبد</a>
-        <a href="#"><span>📦</span>سفارش‌ها</a>
-        <a href="auth.html"><span>👤</span>حساب</a>
+        <a href="index.html"><span><i class="ic i-home"></i></span>خانه</a>
+        <a href="#cp"><span><i class="ic i-grid"></i></span>محصولات</a>
+        <a href="cart.html"><span><i class="ic i-cart"></i></span>سبد</a>
+        <a href="#"><span><i class="ic i-box"></i></span>سفارش‌ها</a>
+        <a href="auth.html"><span><i class="ic i-user"></i></span>حساب</a>
     </nav>
 
     <!-- ===== دکمه و پنجره‌ی پشتیبانی (شناور) ===== -->
@@ -102,10 +115,10 @@
                 <button class="support-close" id="support-close" aria-label="بستن">✕</button>
             </div>
             <div class="support-body">
-                <div class="support-msg">سلام! 👋 چطور می‌تونم کمکت کنم؟ سفارش‌ها معمولاً زیر ۲۰ دقیقه تحویل می‌شن.</div>
-                <a href="#" class="support-link">💬 چت در تلگرام</a>
-                <a href="index.html#faq" class="support-link">❓ سوالات متداول</a>
-                <a href="contact.html" class="support-link">📞 راه‌های ارتباطی</a>
+                <div class="support-msg">سلام! <i class="ic i-hand"></i> چطور می‌تونم کمکت کنم؟ سفارش‌ها معمولاً زیر ۲۰ دقیقه تحویل می‌شن.</div>
+                <a href="#" class="support-link"><i class="ic i-chat"></i> چت در تلگرام</a>
+                <a href="index.html#faq" class="support-link"><i class="ic i-help"></i> سوالات متداول</a>
+                <a href="contact.html" class="support-link"><i class="ic i-phone"></i> راه‌های ارتباطی</a>
             </div>
             <div class="support-foot">
                 <input type="text" placeholder="پیامت رو بنویس..." id="support-input">
@@ -116,7 +129,7 @@
     </div>
 
     <script src="contact.js"></script>
-    <script src="ui.js?v=10"></script>
+    <script src="ui.js?v=11"></script>
     <script src="support.js"></script>
 </body>
 </html>
