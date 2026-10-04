@@ -96,27 +96,39 @@
         if (e.persisted) { resetBar(); update(); }
     });
 
-    // صفحه‌ی جدید باز شد: خط از نصف شروع می‌شه، پر می‌شه و بعد محو می‌شه (ادامه‌ی همون لود)
+    // صفحه‌ی جدید باز شد: خط از نصف شروع می‌شه، وقتی صفحه کامل لود شد پر می‌شه، محو می‌شه و کلاً می‌ره
     var came = false;
     try { came = sessionStorage.getItem('shapur_nav') === '1'; sessionStorage.removeItem('shapur_nav'); } catch (e) {}
     if (came) {
         bar.style.transition = 'none';
         bar.style.transform = 'scaleX(0.5)';
+        bar.style.opacity = '1';
         void bar.offsetWidth;
-        bar.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-        bar.style.transform = 'scaleX(1)';
-        setTimeout(function () {
-            bar.style.transition = 'opacity 0.4s ease';
-            bar.style.opacity = '0';
-        }, 650);
-        setTimeout(function () {
-            bar.style.transition = '';
-            bar.style.opacity = '';
-            update();
-        }, 1100);
-    } else {
-        update();
+        var finished = false;
+        var finish = function () {
+            if (finished) return;
+            finished = true;
+            bar.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+            bar.style.transform = 'scaleX(1)';
+            setTimeout(function () {
+                bar.style.transition = 'opacity 0.35s ease';
+                bar.style.opacity = '0';
+            }, 550);
+            setTimeout(function () {
+                // وقتی کاملاً نامرئی شد، خط رو خالی می‌کنیم تا برای همیشه گم بشه
+                bar.style.transition = 'none';
+                bar.style.transform = 'scaleX(0)';
+                void bar.offsetWidth;
+                bar.style.transition = '';
+                bar.style.opacity = '';
+            }, 950);
+        };
+        if (document.readyState === 'complete') finish();
+        else window.addEventListener('load', finish, { once: true });
+        // اگه لود خیلی طول کشید، بعد از ۶ ثانیه خودمون تمومش می‌کنیم
+        setTimeout(finish, 6000);
     }
+    update();
 
     // ----- عکس کارت‌ها فقط وقتی نزدیک صفحه می‌رسن لود می‌شن (روی صفحه‌های پر از کارت) -----
     var cards = document.querySelectorAll('.card');
