@@ -3464,3 +3464,6 @@ footer a:hover { transform: translateX(-6px); }
 
 /* فشردن کارت‌ها و دکمه‌ها: حس کلیک واقعی */
 .card:active, .cat-card:active, .deal:active { transform: scale(0.985); }
+
+/* فقط عنوان‌های بخش‌ها (مثل «خرید سی پی کالاف دیوتی موبایل») بی‌حرکتن؛ بقیه‌ی افکت‌ها مثل قبل */
+.section-title, .section-title:hover { transform: none !important; }
