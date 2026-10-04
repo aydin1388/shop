@@ -460,12 +460,8 @@ nav a:hover::after {
 
 
 /* تیتر بخش‌ها */
-.section-title {
-    transition: transform 0.3s, letter-spacing 0.3s;
-}
-.section-title:hover {
-    transform: scale(1.05);
-}
+/* عنوان‌ها فقط متنن: هیچ حرکتی موقع hover ندارن */
+.section-title:hover { transform: none; }
 
 /* اگه کسی توی تنظیمات سیستمش انیمیشن رو خاموش کرده، حرکت‌ها رو قطع کن */
 @media (prefers-reduced-motion: reduce) {
@@ -3065,7 +3061,7 @@ footer {
 
 /* ----- خط لود بالای صفحه: حالت «در حال لود» موقع رفتن به صفحه‌ی دیگه ----- */
 .scroll-progress.loading {
-    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ----- دکمه‌ی برگشت به بالا (شیشه‌ای، گوشه‌ی پایین راست) ----- */
@@ -3428,3 +3424,43 @@ body::after { display: none; }
 
 /* هدر تقریباً مات: بدون تاری پشتش، محتوای زیرش (مثل نوار متحرک) از لای متن‌ها دیده می‌شد */
 header { background: rgba(8, 10, 24, 0.985); }
+
+
+/* ================================================================
+   ✦ افکت‌های سبک جدید ✦
+   قانون این بخش: فقط موقع hover/کلیک کار می‌کنن (وقتی کسی دست نمی‌زنه
+   هیچ هزینه‌ای ندارن)، فقط transform و opacity، بدون blur، بدون انیمیشن بی‌نهایت.
+   اگه روزی حس کردی چیزی کنده، از همین کامنت تا آخر فایل رو پاک کن.
+   ================================================================ */
+html { scroll-behavior: smooth; }
+
+/* لینک‌های فوتر: موقع hover کمی به سمت داخل می‌لغزن */
+footer a { transition: color 0.2s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+footer a:hover { transform: translateX(-6px); }
+
+/* کاشی‌های دسته‌بندی: نور عبوری + بالا اومدن اسم */
+.cat-card span { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+.cat-card:hover span { transform: translateY(-5px); }
+.cat-card::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0;
+    width: 45%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+    transform: translate3d(-130%, 0, 0);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+}
+.cat-card:hover::after { transform: translate3d(330%, 0, 0); }
+
+/* آیکن مزیت‌ها: موقع hover کارت کمی بزرگ و کج می‌شن */
+.feature .f-icon { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.feature:hover .f-icon { transform: scale(1.14) rotate(-6deg); }
+
+/* لوگو: موقع hover کمی بزرگ می‌شه */
+.logo { transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.logo:hover { transform: scale(1.06); }
+
+/* فشردن کارت‌ها و دکمه‌ها: حس کلیک واقعی */
+.card:active, .cat-card:active, .deal:active { transform: scale(0.985); }

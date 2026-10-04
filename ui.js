@@ -58,9 +58,9 @@
         if (navigating) return;
         navigating = true;
         bar.classList.add('loading');
-        bar.style.transform = 'scaleX(1)';
+        bar.style.transform = 'scaleX(0.5)';   // تا نصف می‌ره، بقیه‌اش توی صفحه‌ی جدید
         try { sessionStorage.setItem('shapur_nav', '1'); } catch (e) {}
-        setTimeout(function () { window.location.href = url; }, 350);
+        setTimeout(function () { window.location.href = url; }, 450);
     };
 
     document.addEventListener('click', function (e) {
@@ -88,20 +88,24 @@
         }
     });
 
-    // صفحه‌ی جدید باز شد: خط پر شروع می‌شه و آروم محو می‌شه (ادامه‌ی همون لود)
+    // صفحه‌ی جدید باز شد: خط از نصف شروع می‌شه، پر می‌شه و بعد محو می‌شه (ادامه‌ی همون لود)
     var came = false;
     try { came = sessionStorage.getItem('shapur_nav') === '1'; sessionStorage.removeItem('shapur_nav'); } catch (e) {}
     if (came) {
         bar.style.transition = 'none';
-        bar.style.transform = 'scaleX(1)';
+        bar.style.transform = 'scaleX(0.5)';
         void bar.offsetWidth;
-        bar.style.transition = 'opacity 0.5s ease 0.1s';
-        bar.style.opacity = '0';
+        bar.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+        bar.style.transform = 'scaleX(1)';
+        setTimeout(function () {
+            bar.style.transition = 'opacity 0.4s ease';
+            bar.style.opacity = '0';
+        }, 650);
         setTimeout(function () {
             bar.style.transition = '';
             bar.style.opacity = '';
             update();
-        }, 700);
+        }, 1100);
     } else {
         update();
     }
